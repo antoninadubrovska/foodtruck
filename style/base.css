@@ -1,0 +1,21 @@
+
+/* Grön:      #489078
+Mörkgrå: #353131
+Ljusgrå: #605858
+Vit:      #605858
+Röd:     #EB5757
+Font: Frutiger Next Bold */
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Frutiger Next', sans-serif;
+}
+:root {
+	--green: #489078;
+	--dark-gray: #353131;
+	--light-gray: #605858;
+	--white: #FFFFFF;
+	--red: #EB5757;
+}
