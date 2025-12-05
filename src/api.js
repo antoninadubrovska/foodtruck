@@ -35,7 +35,7 @@ const apiKey = 'yum-JAaNDtW2DyvIHS96'
 
 async function getMenu() {
 
-
+	try {
 		const response = await fetch(baseUrl + 'menu', {
 			method: 'GET',
 			headers: {
@@ -43,8 +43,15 @@ async function getMenu() {
 				'x-zocom': apiKey
 			}
 		})
-	const data = await response.json()
-	console.log(data)
+		const data = await response.json()
+		console.log('Menu: ', data)
+	return data
+
+
+	} catch (error) {
+		console.error('Error fetching menu: ', error)
+	}
+
 	}
 
 export { getMenu}

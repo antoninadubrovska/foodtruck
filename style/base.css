@@ -11,7 +11,10 @@ Font: Frutiger Next Bold */
 	padding: 0;
 	box-sizing: border-box;
 	font-family: 'Frutiger Next', sans-serif;
+
 }
+
+
 :root {
 	--green: #489078;
 	--dark-gray: #353131;
@@ -19,3 +22,4 @@ Font: Frutiger Next Bold */
 	--white: #FFFFFF;
 	--red: #EB5757;
 }
+
