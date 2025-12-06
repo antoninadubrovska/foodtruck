@@ -33,8 +33,9 @@ async function setupMenu() {
     header.classList.add('menu-header')
 
     const nameMenuItem = document.createElement('h3')
-    nameMenuItem.classList.add('menu-item-name')
-		nameMenuItem.textContent = item.name
+		nameMenuItem.classList.add('menu-item-name')
+		// nameMenuItem.textContent = item.name.toUpperCase()
+	nameMenuItem.textContent = item.name
 
 	// DOTS element
 	const dots = document.createElement('span')
