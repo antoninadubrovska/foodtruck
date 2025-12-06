@@ -36,7 +36,7 @@ async function setupMenu() {
     nameMenuItem.classList.add('menu-item-name')
 		nameMenuItem.textContent = item.name
 
-		// DOTS element
+	// DOTS element
 	const dots = document.createElement('span')
 	dots.classList.add('menu-dots')
 
@@ -50,8 +50,10 @@ async function setupMenu() {
     descriptionMenuItem.textContent = item.description
 
     // menuItem structure
-    header.appendChild(nameMenuItem)
-    header.appendChild(priceMenuItem)
+	header.appendChild(nameMenuItem)
+	header.appendChild(dots)
+	header.appendChild(priceMenuItem)
+
 
     menuItem.appendChild(header)
     menuItem.appendChild(descriptionMenuItem)
