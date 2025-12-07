@@ -18,8 +18,11 @@ async function setupMenu() {
 	  }
 	//  loop through menuData.items and render
 	menuData.items.forEach(item => {
+		console.log("TYPE:", item.type) // to check
+    	console.log("CLASS WILL BE:", `item-${item.type.toLowerCase()}`) // to check
 		const menuItem = document.createElement('div')
 		menuItem.classList.add('menu-item')
+		menuItem.classList.add(`item-${item.type}`) // distinguish by type for styling
 
 	// 	menuItem.innerHTML = `
 	// 	<h3>${element.name}</h3>
