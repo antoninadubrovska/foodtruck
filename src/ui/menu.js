@@ -1,149 +1,132 @@
-import { getMenu } from '../api.js'
+
+import { getMenu } from "../api.js"
+import { addToCart } from "../store.js"
+import { updateCartCounter, renderCart } from "./cart.js"
 
 const menuContainer = document.querySelector('.menu-items-container')
-const menuItemContainer = document.querySelector('.menu-item')
 
-async function setupMenu() {
+export async function setupMenu() {
+    menuContainer.innerHTML = ''
+    const menuData = await getMenu()
+    if (!menuData || !menuData.items) {
+        menuContainer.innerHTML = "Could not load the menu :("
+        return
+    }
 
-	// clear before rendering
-	menuContainer.innerHTML = ''
-	// 	wait for the menu data - call API
-	const menuData = await getMenu()
-	// safety
-	if (!menuData) {
-		menuContainer.innerHTML = 'Could not load the menu :('
-		return
-	}
+    const wontons = menuData.items.filter(i => i.type === 'wonton')
+    const dips = menuData.items.filter(i => i.type === 'dip')
+    const drinks = menuData.items.filter(i => i.type === 'drink')
 
-	// group the 3 types of menu items
-	const wontons = menuData.items.filter(i => i.type === 'wonton')
-	const dips = menuData.items.filter(i => i.type === 'dip')
-	const drinks = menuData.items.filter(i => i.type === 'drink')
-
-	// render each
-
-	// Wonton
-	renderWontonSection(wontons)
-	// Dip
-	renderDipAndDrinkGroup('Dipsås', dips, dips[0].price)
-	// Drink
-	renderDipAndDrinkGroup('Drink', drinks, drinks[0].price)
+    renderWontonSection(wontons)
+    renderGroupSection('Dipsås', dips)
+    renderGroupSection('Drink', drinks)
 }
 
-// Wonton
-function renderWontonSection(wontons) {
+function renderWontonSection(items) {
     const section = document.createElement('section')
     section.classList.add('menu-section')
-
-    wontons.forEach(item => {
-        const menuItem = createWontonItem(item)
-        section.appendChild(menuItem)
-    })
+    items.forEach(item => section.appendChild(createMenuItem(item)))
     menuContainer.appendChild(section)
 }
 
-
-// Dip and Drink
-function renderDipAndDrinkGroup(title, items, price) {
-
-	const section = document.createElement('section')
+function renderGroupSection(title, items) {
+    if (!items.length) return
+    const section = document.createElement('section')
     section.classList.add('menu-section')
 
     const card = document.createElement('div')
     card.classList.add('menu-item')
 
-    // Header
     const header = document.createElement('div')
     header.classList.add('menu-header')
 
-    const titleEl = document.createElement('h3')
-    titleEl.classList.add('menu-item-name')
+	const titleEl = document.createElement('h3')
+	// ? 1
+	titleEl.classList.add("menu-item-name")
     titleEl.textContent = title
+	const dots = document.createElement('span')
+	dots.classList.add('menu-dots')
+	const priceEl = document.createElement('p')
+	priceEl.classList.add("menu-item-price")
+    priceEl.textContent = `${items[0].price} SEK`
 
-    const dots = document.createElement('span')
-    dots.classList.add('menu-dots')
+    header.append(titleEl, dots, priceEl)
+    card.appendChild(header)
 
-    const priceEl = document.createElement('p')
-    priceEl.classList.add('menu-item-price')
-	priceEl.textContent = `${price} SEK`
-
-	const buttonsWrap = document.createElement('div')
-	buttonsWrap.classList.add('group-buttons-wrap')
-
-    header.appendChild(titleEl)
-    header.appendChild(dots)
-    header.appendChild(priceEl)
-	card.appendChild(header)
-	card.appendChild(buttonsWrap)
-	// buttonsWrap.appendChild(btn)
-
-
-
-	// Buttons
-
-
-
+    const buttonsWrap = document.createElement('div')
+    buttonsWrap.classList.add('group-buttons-wrap')
     items.forEach(item => {
         const btn = document.createElement('button')
-        btn.classList.add('group-button')
-		btn.textContent = item.name
-
-		// lowercase for dips
-		if (title === 'Dipsås') {
-			btn.style.textTransform = 'lowercase'
-		} else {
-			btn.style.textTransform = 'none'
-		}
-
-        btn.addEventListener('click', () => {
-            // console.log('Add to cart:', item)
-        })
-
-		// card.appendChild(btn)
-		buttonsWrap.appendChild(btn)
-	})
-
-	section.appendChild(card)
-	menuContainer.appendChild(section)
-
+        btn.textContent = item.name
+		btn.addEventListener('click', () => {
+			addToCart(item)
+			updateCartCounter()
+		})
+        buttonsWrap.appendChild(btn)
+    })
+    card.appendChild(buttonsWrap)
+    section.appendChild(card)
+    menuContainer.appendChild(section)
 }
 
+function createMenuItem(item) {
+    const el = document.createElement("div")
+    el.classList.add("menu-item", `item-${item.type}`)
 
-//  Wonton menu item creation
-function createWontonItem(item) {
+    const header = document.createElement("div")
+    header.classList.add("menu-header")
 
-    const menuItem = document.createElement('div')
-	menuItem.classList.add('menu-item')
-	menuItem.classList.add(`item-${item.type}`)
-
-
-    const header = document.createElement('div')
-    header.classList.add('menu-header')
-
-    const name = document.createElement('h3')
-    name.classList.add('menu-item-name')
+    const name = document.createElement("h3")
+    name.classList.add("menu-item-name")
     name.textContent = item.name
 
-    const dots = document.createElement('span')
-    dots.classList.add('menu-dots')
+    const dots = document.createElement("span")
+    dots.classList.add("menu-dots")
 
-    const price = document.createElement('p')
-    price.classList.add('menu-item-price')
+    const price = document.createElement("p")
+    price.classList.add("menu-item-price")
     price.textContent = `${item.price} SEK`
 
-    const desc = document.createElement('p')
-    desc.classList.add('menu-item-description')
-    desc.textContent = item.description;
+    header.append(name, dots, price)
+    el.appendChild(header)
 
-    header.appendChild(name)
-    header.appendChild(dots)
-    header.appendChild(price)
+    const desc = document.createElement("p")
+    desc.classList.add("menu-item-description")
+    desc.textContent = item.description
+    el.appendChild(desc)
 
-    menuItem.appendChild(header)
-    menuItem.appendChild(desc)
+    // Click to toggle button, no cart modification here
+    el.addEventListener("click", () => {
+		el.classList.toggle("active")
 
-    return menuItem
+		const btn = el.querySelector(".add-btn")
+
+        if (el.classList.contains("active")) {
+            if (!btn) showAddButton(el, item)
+        } else {
+            if (btn) btn.remove()      // remove only when toggling off
+        }
+    })
+
+    return el
 }
 
+function showAddButton(parent, item) {
+    const btn = document.createElement("button")
+    btn.classList.add("add-btn")
+    btn.textContent = "+ Lägg till"
 
-export { setupMenu }
+    btn.addEventListener("click", e => {
+        e.stopPropagation()
+        addToCart(item)        // increment quantity in cart
+        updateCartCounter()    // update badge
+
+		// If cart page is visible, re-render it so user sees the update immediately
+        const cartPage = document.getElementById("cart-page")
+        if (cartPage && !cartPage.classList.contains("hidden")) {
+            renderCart()
+        }
+    })
+
+    parent.appendChild(btn)
+}

@@ -12,20 +12,29 @@
 <body>
 <main>
 
-	<!-- must 'clone' such template for each menu item -->
+
+
+
+	<!--'clone' such template for each menu item -->
 	<div class="menu-container">
+
+		<div class="cart-icon">
+
+			<img src="./assets/cart.svg" alt="cart">
+			<span class="cart-count">0</span>
+		</div>
 		<div class="menu-items-container">
-
-			<!-- <div class="menu-item">
-				<div class="menu-header">
-				<h3 class="menu-item-name"></h3>
-				<p class="menu-item-price"></p>
-				</div>
-				<p class="menu-item-description"></p>
-			</div> -->
-
 		</div>
 	</div>
+
+
+	<section id="cart-page" class="hidden no-see">
+		<div id="cart-items"></div>
+		<p>Total: <span id="cart-total">0 SEK</span></p>
+		<button id="checkout-btn">Checkout</button>
+	</section>
+
+	<section id="receipt" class="hidden"></section>
 
 </main>
 
