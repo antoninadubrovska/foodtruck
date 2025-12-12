@@ -123,7 +123,7 @@ main {
 	padding: 0.6em;
 	background-color: #f1f0ec3d;
 	border: none;
-	border-radius: 6px;
+	border-radius: var(--border-radius-buttons);
 	color: var(--light-text);
 	font-weight: 600;
 	cursor: pointer;
@@ -137,13 +137,17 @@ main {
 
 .add-btn {
 	margin: 1em;
+	background-color: var(--light-text);
+	padding: 0.6em;
+	border: none;
+	border-radius: var(--border-radius-buttons);
 
 }
 
 
 
 .hidden {
-	display: none;
+	display: none !important;
 }
 
 
@@ -155,17 +159,26 @@ main {
 	display: flex;
 	flex-direction: column;
 	margin: auto 2em;
+	/* flex: 1; */
 
 }
 
+#cart-page .menu-dots {
+    background-image: repeating-linear-gradient(
+        to right,
+        var(--dark-gray) 0 2px,
+        transparent 2px 4px
+    );
+}
 #cart-page p {
-	margin-bottom: 2em;
+	margin: 2em 0;
+
 }
 
 .cart-item {
     display: flex;
-    justify-content: space-between;
-    align-items: center;   /* keeps right column aligned */
+    /* justify-content: space-between; */
+    align-items: center;
     padding: 8px 0;
     border-bottom: 1px solid #ddd;
     margin-bottom: 10px;
@@ -173,7 +186,7 @@ main {
 
 .cart-left {
     display: flex;
-    flex-direction: column; /* name above controls */
+    flex-direction: column;
     gap: 4px;
 }
 
@@ -190,26 +203,41 @@ main {
 }
 
 
-#cart-page button {
+/* #cart-page button {
 	margin: 0.4em;
-	padding: 0.2em;
-	/* border-radius: 30%; */
-	/* border-style: none; */
+	padding: 0.4em;
+	border-radius: var(--border-radius-buttons);
+	border: none;
 
+	&:hover {
+		background-color: var(--green);
+	}
+} */
 
+.checkout-or-goback-group {
+	margin: 0.6em 0;
+	padding: 0.6em;
+	border-radius: var(--border-radius-buttons);
+	border: none;
 
+	&:hover {
+		background-color: var(--green);
+	}
 }
 
-.cart-controls button {
-    padding: 3px 8px;
-    font-size: 16px;
-    cursor: pointer;
-	border-radius: 45%;
+.minus, .plus{
+	border-radius: 50%;
 	background-color: var(--light-text);
-	/* border-style: none; */
-	border: #ddd;
+	padding: 0.6em 0.8em;
+    font-size: 16px;
+	border: none;
 
 	&:hover {
 		background-color: var(--light-gray);
 	}
 }
+
+/* #checkout-btn button:hover {
+	background-color: var(--green);
+
+} */

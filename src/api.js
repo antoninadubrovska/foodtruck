@@ -86,40 +86,7 @@
 // // later use
 // // const tenantId = localStorage.getItem("tenantId")
 
-// async function createOrder(tenantId, orderBody) {
-//     try {
-//         const res = await fetch(`${baseUrl}tenants/${tenantId}/orders`, {
-//             method: 'POST',
-//             headers: {
-//                 'Content-Type': 'application/json',
-//                 'x-zocom': apiKey
-//             },
-//             body: JSON.stringify(orderBody)
-//         })
 
-//         return await res.json()
-//     } catch (err) {
-//         console.error("Error creating order:", err)
-//     }
-// }
-
-
-// async function getReceipt(orderId) {
-//     try {
-//         const res = await fetch(`${baseUrl}receipts/${orderId}`, {
-//             method: 'GET',
-//             headers: {
-//                 'accept': 'application/json',
-//                 'x-zocom': apiKey
-//             }
-//         })
-//         return await res.json()
-//     } catch (err) {
-//         console.error("Error fetching receipt:", err)
-//     }
-// }
-
-// export { getMenu, createTenant, createOrder, getReceipt }
 
 const baseUrl = 'https://fdnzawlcf6.execute-api.eu-north-1.amazonaws.com/'
 const apiKey = 'yum-JAaNDtW2DyvIHS96'
@@ -173,7 +140,10 @@ export async function createOrder(tenantId, orderBody) {
 export async function getReceipt(orderId) {
     try {
         const res = await fetch(`${baseUrl}receipts/${orderId}`, {
-            headers: { 'accept': 'application/json', 'x-zocom': apiKey }
+			headers: {
+				'accept': 'application/json',
+				'x-zocom': apiKey
+			}
         })
         return await res.json()
     } catch (error) {

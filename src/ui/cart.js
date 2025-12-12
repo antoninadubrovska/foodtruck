@@ -38,6 +38,14 @@ export function renderCart() {
             </div>
         `
 
+		// Create dots for this row TODO
+    const dots = document.createElement("span")
+    dots.classList.add("menu-dots")
+
+    // Insert dots between plus button and price
+    const cartRight = row.querySelector(".cart-right")
+    row.insertBefore(dots, cartRight)
+
         // PLUS BUTTON
         row.querySelector(".plus").addEventListener("click", () => {
             updateQuantity(item.id, item.quantity + 1)
@@ -58,7 +66,9 @@ export function renderCart() {
 
         cartContainer.appendChild(row)
         total += item.price * item.quantity
-    })
+	})
+
+
 
     cartTotalEl.textContent = `${total} SEK`
 }

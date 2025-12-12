@@ -26,6 +26,7 @@ cartIcon.addEventListener("click", showCartPage)
 
 // back button in cart
 const backBtn = document.createElement("button")
+backBtn.classList.add('checkout-or-goback-group')
 backBtn.textContent = "Tillbaka till menyn"
 backBtn.addEventListener("click", showMenuPage)
 cartPage.appendChild(backBtn)
@@ -33,7 +34,7 @@ cartPage.appendChild(backBtn)
 // SPA
 async function initApp() {
     //await initTenant()
-    await setupMenu()    
+    await setupMenu()
     setupCart()
 }
 
