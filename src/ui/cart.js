@@ -26,7 +26,7 @@ export function renderCart() {
 
         row.innerHTML = `
             <div class="cart-left">
-                <strong>${item.name}</strong>
+                <h4>${item.name}</h4>
                 <div class="cart-controls">
                     <button class="minus">−</button>
                     <span class="qty">${item.quantity}</span>
@@ -67,6 +67,73 @@ export function renderCart() {
         cartContainer.appendChild(row)
         total += item.price * item.quantity
 	})
+
+	// items.forEach(item => {
+	// 	const row = document.createElement("div")
+	// 	row.classList.add("cart-item")
+
+	// 	// Row 1: Item name
+	// 	const cartLeft = document.createElement("div")
+	// 	cartLeft.classList.add("cart-left")
+	// 	const name = document.createElement("strong")
+	// 	name.textContent = item.name
+	// 	cartLeft.appendChild(name)
+
+	// 	// Row 2: Controls + dots + price
+	// 	const cartBottom = document.createElement("div")
+	// 	cartBottom.classList.add("cart-bottom")
+
+	// 	// Controls
+	// 	const controls = document.createElement("div")
+	// 	controls.classList.add("cart-controls")
+	// 	const minusBtn = document.createElement("button")
+	// 	minusBtn.classList.add("minus")
+	// 	minusBtn.textContent = "−"
+	// 	const qty = document.createElement("span")
+	// 	qty.classList.add("qty")
+	// 	qty.textContent = item.quantity
+	// 	const plusBtn = document.createElement("button")
+	// 	plusBtn.classList.add("plus")
+	// 	plusBtn.textContent = "+"
+	// 	controls.append(minusBtn, qty, plusBtn)
+
+	// 	// Dots
+	// 	const dots = document.createElement("span")
+	// 	dots.classList.add("menu-dots")
+
+	// 	// Price
+	// 	const cartRight = document.createElement("div")
+	// 	cartRight.classList.add("cart-right")
+	// 	const priceEl = document.createElement("span")
+	// 	priceEl.classList.add("price")
+	// 	priceEl.textContent = `${item.price * item.quantity} SEK`
+	// 	cartRight.appendChild(priceEl)
+
+	// 	// Append controls, dots, price to bottom row
+	// 	cartBottom.append(controls, dots, cartRight)
+
+	// 	// Append rows to cart-item
+	// 	row.append(cartLeft, cartBottom)
+
+	// 	// Event listeners
+	// 	plusBtn.addEventListener("click", () => {
+	// 		updateQuantity(item.id, item.quantity + 1)
+	// 		renderCart()
+	// 		updateCartCounter()
+	// 	})
+	// 	minusBtn.addEventListener("click", () => {
+	// 		if (item.quantity > 1) {
+	// 			updateQuantity(item.id, item.quantity - 1)
+	// 		} else {
+	// 			removeFromCart(item.id)
+	// 		}
+	// 		renderCart()
+	// 		updateCartCounter()
+	// 	})
+
+	// 	cartContainer.appendChild(row)
+	// 	total += item.price * item.quantity
+	// })
 
 
 

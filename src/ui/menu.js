@@ -54,10 +54,14 @@ function renderGroupSection(title, items) {
     card.appendChild(header)
 
     const buttonsWrap = document.createElement('div')
-    buttonsWrap.classList.add('group-buttons-wrap')
+	buttonsWrap.classList.add('group-buttons-wrap')
+
     items.forEach(item => {
         const btn = document.createElement('button')
-        btn.textContent = item.name
+		btn.textContent = item.name
+
+		const card = createMenuItem(item)
+		
 		btn.addEventListener('click', () => {
 			addToCart(item)
 			updateCartCounter()
