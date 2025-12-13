@@ -265,3 +265,7 @@ main {
 
 
 
+#eta-container {
+	display: flex;
+	flex-direction: column;
+}

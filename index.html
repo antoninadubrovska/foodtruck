@@ -29,8 +29,27 @@
 		<p>Total: <span id="cart-total">0 SEK</span></p>
 		<button id="checkout-btn" class="checkout-or-goback-group">Checkout</button>
 	</section>
+	<!-- <section id="eta-container" >
+		<img src="./assets/boxtop.svg" alt="boxtop">
+	</section> -->
 
-	<section id="receipt" class="hidden"></section>
+
+	<section id="receipt-page" >
+
+		<h2>Kvitto</h2>
+		<p>
+		  #<strong id="receipt-order-id"></strong><br>
+		  ETA: <strong id="receipt-eta"></strong>
+		</p>
+
+		<div id="receipt-items"></div>
+
+		<div class="cart-total">
+		  <strong id="receipt-total">0 SEK</strong>
+		</div>
+
+		<button id="new-order-btn">GÖR EN NY BESTÄLLNING</button>
+	  </section>
 
 </main>
 

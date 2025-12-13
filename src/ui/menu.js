@@ -6,9 +6,9 @@ import { updateCartCounter, renderCart } from "./cart.js"
 const menuItemsContainer = document.querySelector('.menu-items-container')
 const menuContainer = document.querySelector(".menu-container")
 const cartPage = document.getElementById("cart-page")
-const receiptSection = document.getElementById("receipt")
+const receiptSection = document.getElementById("receipt-page")
 
-function showMenuPage() {
+export function showMenuPage() {
     menuContainer.classList.remove("hidden")
     cartPage.classList.add("hidden")
     receiptSection.classList.add("hidden")

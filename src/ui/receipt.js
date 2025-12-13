@@ -1,83 +1,56 @@
-// // // Receives order data and displays the receipt
-// // export function showReceipt(order) {
-// //     const receiptSection = document.getElementById("receipt");
-// //     receiptSection.classList.remove("hidden");
 
-// //     // Display order ID
-// //     document.getElementById("receipt-order-id").textContent =
-// //         "Ordernummer: " + order.id;
-
-// //     // OPTIONAL: display ordered items
-// //     if (order.items) {
-// //         let itemsList = document.getElementById("receipt-items");
-// //         if (!itemsList) {
-// //             itemsList = document.createElement("ul");
-// //             itemsList.id = "receipt-items";
-// //             receiptSection.appendChild(itemsList);
-// //         }
-// //         itemsList.innerHTML = "";
-// //         order.items.forEach(item => {
-// //             const li = document.createElement("li");
-// //             li.textContent = `${item.name} – ${item.price} SEK`;
-// //             itemsList.appendChild(li);
-// //         });
-// //     }
-// // }
+import { getReceipt } from "../api.js"
+import { showMenuPage } from "./menu.js"
 
 
-// import { getReceipt } from "../api.js"
-
-// export async function showReceipt(orderId) {
-//     const receiptSection = document.getElementById("receipt")
-//     receiptSection.classList.remove("hidden")
-
-//     const receipt = await getReceipt(orderId)
-
-//     // Display order ID
-//     document.getElementById("receipt-order-id").textContent = "Ordernummer: " + receipt.id
-
-//     // Display items
-//     const itemsList = document.getElementById("receipt-items")
-//     itemsList.innerHTML = ""
-
-//     receipt.items.forEach(item => {
-//         const li = document.createElement("li")
-//         li.textContent = `${item.name} – ${item.price} SEK × ${item.quantity}`
-//         itemsList.appendChild(li)
-//     })
-// }
-
-import { getReceipt } from "../api.js";
+const receiptPage = document.getElementById("receipt-page")
+const receiptItems = document.getElementById("receipt-items")
+const receiptTotalEl = document.getElementById("receipt-total")
+const receiptOrderId = document.getElementById("receipt-order-id")
+const receiptTimestamp = document.getElementById("receipt-eta")
+const newOrderBtn = document.getElementById("new-order-btn")
+//const menuPage = document.getElementById("menu-page")
 
 export async function showReceipt(orderId) {
-    const receiptSection = document.getElementById("receipt");
-    receiptSection.classList.remove("hidden");
+    const receipt = await getReceipt(orderId)
 
-	const receipt = await getReceipt(orderId);
-	if (!receipt) {
-		receiptSection.innerHTML = "<p>Kunde inte hämta kvitto.</p>"
-		return
-	}
+    if (!receipt || !receipt.items) {
+        console.error("Invalid receipt response:", receipt)
+        return
+    }
 
-    document.getElementById("receipt-order-id").textContent = "Ordernummer: " + receipt.id;
+    receiptItems.innerHTML = ""
+    receiptOrderId.textContent = receipt.id
+    receiptTimestamp.textContent =
+        new Date(receipt.timestamp).toLocaleTimeString("sv-SE")
 
-    const itemsList = document.getElementById("receipt-items");
-    itemsList.innerHTML = "";
     receipt.items.forEach(item => {
-        const li = document.createElement("li");
-        li.textContent = `${item.name} – ${item.price} SEK × ${item.quantity}`;
-        itemsList.appendChild(li);
-	});
+        const row = document.createElement("div")
+        row.classList.add("cart-item")
 
-	// // (optionally) show totals, timestamp, eta
-	// const totalEl = document.createElement("p")
-	// totalEl.textContent = `Total: ${receipt.orderValue} SEK`
-	// receiptSection.appendChild(totalEl)
+        row.innerHTML = `
+            <div class="cart-left">
+                <h4>${item.name}</h4>
+                <span class="qty">${item.quantity} st</span>
+            </div>
 
-	// if (receipt.eta) {
-	//   const etaEl = document.createElement("p")
-	//   etaEl.textContent = `Beräknad leverans: ${new Date(receipt.eta).toLocaleString()}`
-	//   receiptSection.appendChild(etaEl)
-	// }
+            <div class="cart-right">
+                <span class="price">${item.price * item.quantity} SEK</span>
+            </div>
+        `
 
+        const dots = document.createElement("span")
+        dots.classList.add("menu-dots")
+        row.insertBefore(dots, row.querySelector(".cart-right"))
+
+        receiptItems.appendChild(row)
+    })
+
+    receiptTotalEl.textContent = `${receipt.orderValue} SEK`
+    receiptPage.classList.remove("hidden")
 }
+
+newOrderBtn.addEventListener("click", () => {
+    receiptPage.classList.add("hidden")
+    showMenuPage()
+})

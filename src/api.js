@@ -87,6 +87,8 @@ export async function createOrder(tenantId, orderBody) {
     }
 }
 
+// By unwrapping data.receipt removed the extra layer that was causing receipt.items to be undefined.
+
 export async function getReceipt(orderId) {
     try {
         const res = await fetch(`${baseUrl}receipts/${orderId}`, {
@@ -94,8 +96,12 @@ export async function getReceipt(orderId) {
 				'accept': 'application/json',
 				'x-zocom': apiKey
 			}
-        })
-        return await res.json()
+		})
+
+		//return await res.json()
+		const data = await res.json()
+        return data.receipt   // unwrap
+
     } catch (error) {
         console.error("Error fetching receipt:", error)
     }
