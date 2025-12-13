@@ -8,6 +8,10 @@ main {
 .menu-container {
   background-color: var(--green);
   flex: 1;
+  /* margin: 5em auto;
+  width: 70%; */
+  /* display: flex;
+  flex-direction: column; */
 }
 
 /* cart icon */
@@ -26,8 +30,7 @@ main {
 }
 
 .menu-items-container {
-  margin: 5em auto;
-  width: 70%;
+
   display: flex;
   flex-direction: column;
   color: var(--light-text);
@@ -35,6 +38,8 @@ main {
 	border-radius: 11.5px; */
   background-color: var(--green);
   /* margin: 2em; */
+  margin: 5em auto;
+  width: 70%;
 }
 
 .menu-item {
@@ -145,8 +150,14 @@ main {
 	padding: 0.6em;
 	border: none;
 	border-radius: var(--border-radius-buttons);
-	box-shadow: 0.4px 1.2px 2px black;;
+	box-shadow: 0.4px 1.2px 2px black;
+
 }
+
+/* .add-btn:hover {
+
+
+} */
 
 .add-btn:active {
 	background-color: var(--green);

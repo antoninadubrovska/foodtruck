@@ -1,7 +1,9 @@
 
 import { getCartItems, getCartCount, clearCart, updateQuantity, removeFromCart } from "../store.js"
 import { submitOrder } from "../order.js"
-import { showReceipt } from "./receipt.js"
+// For console testing, temporarily expose submitOrder globally
+// window.submitOrder = submitOrder
+//import { showReceipt } from "./receipt.js"
 
 const cartPage = document.getElementById("cart-page")
 const cartContainer = document.getElementById("cart-items")
@@ -68,75 +70,6 @@ export function renderCart() {
         total += item.price * item.quantity
 	})
 
-	// items.forEach(item => {
-	// 	const row = document.createElement("div")
-	// 	row.classList.add("cart-item")
-
-	// 	// Row 1: Item name
-	// 	const cartLeft = document.createElement("div")
-	// 	cartLeft.classList.add("cart-left")
-	// 	const name = document.createElement("strong")
-	// 	name.textContent = item.name
-	// 	cartLeft.appendChild(name)
-
-	// 	// Row 2: Controls + dots + price
-	// 	const cartBottom = document.createElement("div")
-	// 	cartBottom.classList.add("cart-bottom")
-
-	// 	// Controls
-	// 	const controls = document.createElement("div")
-	// 	controls.classList.add("cart-controls")
-	// 	const minusBtn = document.createElement("button")
-	// 	minusBtn.classList.add("minus")
-	// 	minusBtn.textContent = "−"
-	// 	const qty = document.createElement("span")
-	// 	qty.classList.add("qty")
-	// 	qty.textContent = item.quantity
-	// 	const plusBtn = document.createElement("button")
-	// 	plusBtn.classList.add("plus")
-	// 	plusBtn.textContent = "+"
-	// 	controls.append(minusBtn, qty, plusBtn)
-
-	// 	// Dots
-	// 	const dots = document.createElement("span")
-	// 	dots.classList.add("menu-dots")
-
-	// 	// Price
-	// 	const cartRight = document.createElement("div")
-	// 	cartRight.classList.add("cart-right")
-	// 	const priceEl = document.createElement("span")
-	// 	priceEl.classList.add("price")
-	// 	priceEl.textContent = `${item.price * item.quantity} SEK`
-	// 	cartRight.appendChild(priceEl)
-
-	// 	// Append controls, dots, price to bottom row
-	// 	cartBottom.append(controls, dots, cartRight)
-
-	// 	// Append rows to cart-item
-	// 	row.append(cartLeft, cartBottom)
-
-	// 	// Event listeners
-	// 	plusBtn.addEventListener("click", () => {
-	// 		updateQuantity(item.id, item.quantity + 1)
-	// 		renderCart()
-	// 		updateCartCounter()
-	// 	})
-	// 	minusBtn.addEventListener("click", () => {
-	// 		if (item.quantity > 1) {
-	// 			updateQuantity(item.id, item.quantity - 1)
-	// 		} else {
-	// 			removeFromCart(item.id)
-	// 		}
-	// 		renderCart()
-	// 		updateCartCounter()
-	// 	})
-
-	// 	cartContainer.appendChild(row)
-	// 	total += item.price * item.quantity
-	// })
-
-
-
     cartTotalEl.textContent = `${total} SEK`
 }
 
@@ -151,6 +84,7 @@ export function setupCart() {
 
     checkoutBtn.addEventListener("click", async () => {
 		const orderId = await submitOrder()
+		console.log('Order Id: ', orderId)
 		if (!orderId) {
 			console.error("Order failed or no orderId returned")
 			return
@@ -159,7 +93,7 @@ export function setupCart() {
         renderCart()
         updateCartCounter()
         cartPage.classList.add("hidden")
-        await showReceipt(orderId)
+    //    await showReceipt(orderId)
     });
 }
 

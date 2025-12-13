@@ -3,13 +3,22 @@ import { getMenu } from "../api.js"
 import { addToCart } from "../store.js"
 import { updateCartCounter, renderCart } from "./cart.js"
 
-const menuContainer = document.querySelector('.menu-items-container')
+const menuItemsContainer = document.querySelector('.menu-items-container')
+const menuContainer = document.querySelector(".menu-container")
+const cartPage = document.getElementById("cart-page")
+const receiptSection = document.getElementById("receipt")
+
+function showMenuPage() {
+    menuContainer.classList.remove("hidden")
+    cartPage.classList.add("hidden")
+    receiptSection.classList.add("hidden")
+}
 
 export async function setupMenu() {
-    menuContainer.innerHTML = ''
+	menuItemsContainer.innerHTML = ''
     const menuData = await getMenu()
     if (!menuData || !menuData.items) {
-        menuContainer.innerHTML = "Could not load the menu :("
+        menuItemsContainer.innerHTML = "Could not load the menu :("
         return
     }
 
@@ -22,11 +31,28 @@ export async function setupMenu() {
     renderGroupSection('Drink', drinks)
 }
 
+const cartIcon = document.querySelector(".cart-icon")
+function showCartPage() {
+    menuContainer.classList.add("hidden")
+    cartPage.classList.remove("hidden")
+    receiptSection.classList.add("hidden")
+    renderCart()
+}
+
+cartIcon.addEventListener("click", showCartPage)
+
+// back button in cart
+const backBtn = document.createElement("button")
+backBtn.classList.add('checkout-or-goback-group')
+backBtn.textContent = "Tillbaka till menyn"
+backBtn.addEventListener("click", showMenuPage)
+cartPage.appendChild(backBtn)
+
 function renderWontonSection(items) {
     const section = document.createElement('section')
     section.classList.add('menu-section')
     items.forEach(item => section.appendChild(createMenuItem(item)))
-    menuContainer.appendChild(section)
+    menuItemsContainer.appendChild(section)
 }
 
 function renderGroupSection(title, items) {
@@ -41,7 +67,6 @@ function renderGroupSection(title, items) {
     header.classList.add('menu-header')
 
 	const titleEl = document.createElement('h3')
-	// ? 1
 	titleEl.classList.add("menu-item-name")
     titleEl.textContent = title
 	const dots = document.createElement('span')
@@ -61,7 +86,7 @@ function renderGroupSection(title, items) {
 		btn.textContent = item.name
 
 		const card = createMenuItem(item)
-		
+
 		btn.addEventListener('click', () => {
 			addToCart(item)
 			updateCartCounter()
@@ -70,7 +95,7 @@ function renderGroupSection(title, items) {
     })
     card.appendChild(buttonsWrap)
     section.appendChild(card)
-    menuContainer.appendChild(section)
+    menuItemsContainer.appendChild(section)
 }
 
 function createMenuItem(item) {
@@ -108,7 +133,7 @@ function createMenuItem(item) {
         if (el.classList.contains("active")) {
             if (!btn) showAddButton(el, item)
         } else {
-            if (btn) btn.remove()      // remove only when toggling off
+            if (btn) btn.remove() // remove only when toggling off
         }
     })
 
