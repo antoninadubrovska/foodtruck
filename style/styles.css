@@ -265,7 +265,63 @@ main {
 
 
 
-#eta-container {
+/* success */
+
+#order-status-page {
 	display: flex;
 	flex-direction: column;
+	/* align-items: center; */
+	gap: 0.5em;
+	/* flex: 1; */
+	background-color: var(--dark-gray);
+	color: var(--white);
+
+	h3 {
+		margin: 0.4em 2em;
+		text-align: center;
+		font-size: larger;
+	}
+
+	p {
+		margin: 0.4em 2em;
+		text-align: center;
+		/* font-size: small; */
+	}
+
+	button{
+		/* display: flex;
+		flex-direction: column; */
+	margin: 0.5em 2em;
+	background-color: var(--light-text);
+	padding: 0.8em;
+	border: none;
+	border-radius: var(--border-radius-buttons);
+	/* box-shadow: 0.4px 1.2px 2px black; */
+
+	&:hover {
+		background-color: var(--green);
+	}
+
+	}
+
+}
+
+/* RECEIPT */
+
+#receipt-page {
+	display: flex;
+	flex-direction: column;
+	margin: 2em;
+	/* flex: 1; */
+	/* align-items: center; */
+
+	button{
+		margin: 1em;
+		background-color: var(--light-text);
+		padding: 0.6em;
+		border: none;
+		border-radius: var(--border-radius-buttons);
+		/* box-shadow: 0.4px 1.2px 2px black; */
+	}
+
 }

@@ -7,12 +7,21 @@ const menuItemsContainer = document.querySelector('.menu-items-container')
 const menuContainer = document.querySelector(".menu-container")
 const cartPage = document.getElementById("cart-page")
 const receiptSection = document.getElementById("receipt-page")
+const orderStatusPage = document.getElementById("order-status-page")
 
+// export function showMenuPage() {
+//     menuContainer.classList.remove("hidden")
+//     cartPage.classList.add("hidden")
+//     receiptSection.classList.add("hidden")
+// }
+
+//menu always wins when called - authoritative
 export function showMenuPage() {
-    menuContainer.classList.remove("hidden")
-    cartPage.classList.add("hidden")
-    receiptSection.classList.add("hidden")
-}
+	menuContainer.classList.remove("hidden")
+	cartPage.classList.add("hidden")
+	receiptSection.classList.add("hidden")
+	orderStatusPage.classList.add("hidden")
+  }
 
 export async function setupMenu() {
 	menuItemsContainer.innerHTML = ''

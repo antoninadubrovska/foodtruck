@@ -3,7 +3,10 @@ import { getCartItems, getCartCount, clearCart, updateQuantity, removeFromCart }
 import { submitOrder } from "../order.js"
 // For console testing, temporarily expose submitOrder globally
 // window.submitOrder = submitOrder
+import { showOrderStatus } from "./success.js"
+
 import { showReceipt } from "./receipt.js"
+
 
 const cartPage = document.getElementById("cart-page")
 const cartContainer = document.getElementById("cart-items")
@@ -93,7 +96,8 @@ export function setupCart() {
         renderCart()
         updateCartCounter()
         cartPage.classList.add("hidden")
-    	await showReceipt(orderId)
+		// await showReceipt(orderId)
+		showOrderStatus(orderId)
     });
 }
 

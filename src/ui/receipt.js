@@ -11,14 +11,18 @@ const receiptTimestamp = document.getElementById("receipt-eta")
 const newOrderBtn = document.getElementById("new-order-btn")
 //const menuPage = document.getElementById("menu-page")
 
+const orderStatusPage = document.getElementById("order-status-page")
+
 export async function showReceipt(orderId) {
     const receipt = await getReceipt(orderId)
 
     if (!receipt || !receipt.items) {
         console.error("Invalid receipt response:", receipt)
-        return
+		return
+
     }
 
+	// render
     receiptItems.innerHTML = ""
     receiptOrderId.textContent = receipt.id
     receiptTimestamp.textContent =
@@ -33,20 +37,22 @@ export async function showReceipt(orderId) {
                 <h4>${item.name}</h4>
                 <span class="qty">${item.quantity} st</span>
             </div>
+			<span class="menu-dots"></span>
 
             <div class="cart-right">
                 <span class="price">${item.price * item.quantity} SEK</span>
             </div>
         `
 
-        const dots = document.createElement("span")
-        dots.classList.add("menu-dots")
-        row.insertBefore(dots, row.querySelector(".cart-right"))
+        // const dots = document.createElement("span")
+        // dots.classList.add("menu-dots")
+        // row.insertBefore(dots, row.querySelector(".cart-right"))
 
         receiptItems.appendChild(row)
     })
 
-    receiptTotalEl.textContent = `${receipt.orderValue} SEK`
+	receiptTotalEl.textContent = `${receipt.orderValue} SEK`
+	orderStatusPage.classList.add('hidden')
     receiptPage.classList.remove("hidden")
 }
 

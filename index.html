@@ -13,14 +13,11 @@
 <main>
 
 	<div class="menu-container">
-
 		<div class="cart-icon">
-
 			<img src="./assets/cart.svg" alt="cart">
 			<span class="cart-count">0</span>
 		</div>
-		<div class="menu-items-container">
-		</div>
+		<div class="menu-items-container"></div>
 	</div>
 
 
@@ -29,27 +26,28 @@
 		<p>Total: <span id="cart-total">0 SEK</span></p>
 		<button id="checkout-btn" class="checkout-or-goback-group">Checkout</button>
 	</section>
-	<!-- <section id="eta-container" >
-		<img src="./assets/boxtop.svg" alt="boxtop">
-	</section> -->
 
 
-	<section id="receipt-page" >
+	<section id="order-status-page" class="hidden"><img src="./assets/boxtop.svg" alt="boxtop">
 
+		<h3>DINA WONTONS TILLÄGAS</h3>
+
+		<!-- TODO # ETA:-->
+		<p id="status-order-id">#</p>
+		<p id="status-eta">ETA:</p>
+		<button id="see-receipt-btn">SE KVITTO</button>
+		<button id="new-order-btn-status">GÖR EN NY BESTÄLLNING</button>
+	</section>
+
+
+	<section id="receipt-page" class="hidden" >
 		<h2>Kvitto</h2>
-		<p>
-		  #<strong id="receipt-order-id"></strong><br>
-		  ETA: <strong id="receipt-eta"></strong>
-		</p>
-
+		<p> #<strong id="receipt-order-id"></strong><br> ETA: <strong id="receipt-eta"></strong> </p>
 		<div id="receipt-items"></div>
-
-		<div class="cart-total">
-		  <strong id="receipt-total">0 SEK</strong>
-		</div>
-
+		<div class="cart-total"><strong id="receipt-total">0 SEK</strong></div>
 		<button id="new-order-btn">GÖR EN NY BESTÄLLNING</button>
-	  </section>
+	</section>
+
 
 </main>
 
