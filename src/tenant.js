@@ -5,11 +5,24 @@ const TENANT_KEY = "tenantId"
 export async function initTenant(name = "Yaliuka") {
     let tenantId = localStorage.getItem(TENANT_KEY)
 
-    if (!tenantId) {
-        const tenant = await createTenant(name)
-        tenantId = tenant.id
-        localStorage.setItem(TENANT_KEY, tenantId)
-        console.log("Created tenant:", tenantId)
+	if (!tenantId) {
+
+
+		// const tenant = await createTenant(name)
+        // tenantId = tenant.id
+        // localStorage.setItem(TENANT_KEY, tenantId)
+		// console.log("Created tenant:", tenantId)
+
+		// Wrap the API call so errors are explicit:
+		try {
+			const tenant = await createTenant(name)
+			tenantId = tenant.id
+			localStorage.setItem(TENANT_KEY, tenantId)
+		} catch (err) {
+			console.error("Failed to initialize tenant", err)
+			throw err
+		}
+
     }
 
 	return tenantId

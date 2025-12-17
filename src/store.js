@@ -33,8 +33,4 @@ export function clearCart() {
     cart = []
 }
 
-// export function removeButtonFromCart(itemId) {
-//     cart = cart.filter(i => i.id !== itemId)
-// }
-
 

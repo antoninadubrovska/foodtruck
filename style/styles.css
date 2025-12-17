@@ -288,7 +288,9 @@ main {
 
 	img{
 		max-width: 100%;
-		margin: 2em auto;
+		margin: 0.2em auto;
+		/* Force the svg image to respect its container */
+  		height: auto;
 	}
 
 	h3 {
@@ -342,6 +344,8 @@ main {
 	display: flex;
 	flex-direction: column;
 	background-color: var(--light-gray);
+	/* align-items: center; */
+
 
 }
 
@@ -350,9 +354,15 @@ main {
 	flex-direction: column;
 	justify-content: center;
 	gap: 0.4em;
+	/* Constrain the receipt body - width + max-width*/
+	width: 100%;
 	max-width: 80%;
+	margin-top: 2em;
+	margin-bottom: 2em;
+	margin-left: auto;
+	margin-right: auto;
 	/* margin: auto; */
-	margin: 4em auto;
+	/* margin: 4em auto; */
 	background-color: var(--white);
 
 	/* flex: 1; */
@@ -362,10 +372,14 @@ main {
 
 	img {
 		margin: 2em 0 0 0;
+		/* Force the svg image to respect its container */
+		max-width: 100%;
+  		height: auto;
+
 	}
 
-	h2{
-		font-size: 4em;
+	h3{
+		font-size: 3em;
 		margin: 0 0 0.2em 0;
 
 	}
@@ -377,6 +391,22 @@ main {
 	flex-direction: column;
 	width: 80%;
 	margin: 2em 0;
+
+	.cart-item{
+
+		/* reuse cart-item styles from cart, adjusting them to fit the receipt */
+
+		.cart-left h4 {
+			margin: 0;
+			font-size: 1em;
+		}
+
+		.menu-dots {
+			border-bottom: 0.1px dashed var(--light-text);
+		}
+	}
+
+
 }
 
 
@@ -384,7 +414,7 @@ main {
 	font-size: 1em;
 	/* font-weight: 600; */
 	background-color: var(--light-text);
-	padding: 0.8em;
+	padding: 1.2em;
 	/* border-radius: 4px; */
 	min-width: 100%;
 	text-align: center;
@@ -399,13 +429,14 @@ main {
 	border: none;
 	/* border-radius: 2px; */
 	/* max-width: 80%; */
+	color: var(--light-text);
 	margin: 1em auto;
 	background-color: var(--dark-gray);
-	padding: 0.8em 4em;
+	padding: 1.2em 4em;
 	border: none;
 	width: 80%;
 	box-shadow: 0.8px 2px 3px black;
-	cursor: pointer;
+	/* cursor: pointer; */
 
 	&:hover {
 		box-shadow: 0.4px 1.2px 2px black;;

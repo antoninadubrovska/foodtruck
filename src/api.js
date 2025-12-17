@@ -1,26 +1,7 @@
 
-// // menu
-// // curl -X 'GET' \
-// //   'https://fdnzawlcf6.execute-api.eu-north-1.amazonaws.com/menu' \
-// //   -H 'accept: application/json' \
-// //   -H 'x-zocom: yum-JAaNDtW2DyvIHS96'
-
-// // "items": [
-// //     {
-// //       "id": 1,
-// //       "type": "wonton",
-// //       "name": "Karlstad",
-// //       "description": "En god friterad wonton med smaker från de värmländska skogarna.",
-// //       "ingredients": [
-// //         "kantarell",
-// //         "scharlottenlök",
-// //         "morot",
-// //         "bladpersilja"
-// //       ],
-// //       "price": 9
-// //     },
 
 const baseUrl = 'https://fdnzawlcf6.execute-api.eu-north-1.amazonaws.com/'
+
 const apiKey = 'yum-JAaNDtW2DyvIHS96'
 
 export async function getMenu() {
@@ -38,8 +19,6 @@ export async function getMenu() {
 }
 
 
-
-//TODO
 export async function createTenant(name) {
     const res = await fetch(baseUrl + 'tenants', {
         method: 'POST',
@@ -58,22 +37,10 @@ export async function createTenant(name) {
     return await res.json()
 }
 
-// // tenant
-// // curl -X 'POST' \
-// //   'https://fdnzawlcf6.execute-api.eu-north-1.amazonaws.com/tenants' \
-// //   -H 'accept: application/json' \
-// //   -H 'x-zocom: yum-7BTxHCyHhzI' \
-// //   -H 'Content-Type: application/json' \
-// //   -d '{
-// //   "name": "Vitaly"
-// // }'
-
-// name = 'Vitaly', tenantID = 'mq65'
-
 
 export async function createOrder(tenantId, orderBody) {
     try {
-        const res = await fetch(`${baseUrl}/${tenantId}/orders`, {
+        const res = await fetch(`${baseUrl}${tenantId}/orders`, {
             method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -81,6 +48,12 @@ export async function createOrder(tenantId, orderBody) {
 			},
             body: JSON.stringify(orderBody)
 		})
+
+		// if (!res.ok) line turns fetch into a reliable API client.
+		if (!res.ok) {
+			throw new Error(`Order failed: ${res.status}`)
+		}
+
         return await res.json()
     } catch (error) {
         console.error("Error creating order:", error)
