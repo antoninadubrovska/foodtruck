@@ -7,7 +7,7 @@ const receiptPage = document.getElementById("receipt-page")
 const receiptItems = document.getElementById("receipt-items")
 const receiptTotalEl = document.getElementById("receipt-total")
 const receiptOrderId = document.getElementById("receipt-order-id")
-const receiptTimestamp = document.getElementById("receipt-eta")
+//const receiptTimestamp = document.getElementById("receipt-eta")
 const newOrderBtn = document.getElementById("new-order-btn")
 //const menuPage = document.getElementById("menu-page")
 
@@ -37,7 +37,7 @@ export async function showReceipt(orderId) {
         row.innerHTML = `
             <div class="cart-left">
                 <h4>${item.name}</h4>
-                <span class="qty">${item.quantity} st</span>
+                <span class="qty">${item.quantity} stycken</span>
             </div>
 			<span class="menu-dots"></span>
 
@@ -49,8 +49,28 @@ export async function showReceipt(orderId) {
         receiptItems.appendChild(row)
     })
 
-	// backend-calculated total
-	receiptTotalEl.textContent = `TOTALT: ${receipt.orderValue} SEK`
+	// backend-calculated total, structured markup instead of textContent:
+	// receiptTotalEl.textContent = `TOTALT ${receipt.orderValue} SEK`
+
+	receiptTotalEl.innerHTML =
+	`<div class="receipt-total-inner">
+	<span class="label"> TOTALT</span>
+	<span class="placeholder"></span>
+	<span class="amount">${receipt.orderValue} SEK</span>
+	</div>`
+
+	// 	receiptTotalEl.innerHTML = `
+
+//   <div class="cart-left">
+//     <h4>TOTALT</h4>
+//   </div>
+//   <span class="menu-dots"></span>
+//   <div class="cart-right">
+//     <span class="price">${receipt.orderValue} SEK</span>
+//   </div>
+// `
+
+
 	orderStatusPage.classList.add('hidden')
     receiptPage.classList.remove("hidden")
 }

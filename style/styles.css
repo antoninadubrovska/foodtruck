@@ -410,15 +410,61 @@ main {
 }
 
 
-#receipt-total {
+/* #receipt-total {
 	font-size: 1em;
-	/* font-weight: 600; */
+
 	background-color: var(--light-text);
 	padding: 1.2em;
-	/* border-radius: 4px; */
+
 	min-width: 100%;
 	text-align: center;
+} */
+
+#receipt-total {
+
+	width: 100%;
+
+	background-color: var(--light-text);
+	/* margin: auto; */
+	display: flex;
+	justify-content: center;
+  }
+
+
+  .receipt-total-inner {
+	display: flex;
+	padding: 1.8em 0;
+	width: 80%;
+	/* margin: auto; */
+	font-weight: 600;
+	font-size: 18px;
+	align-items: center;
+
+
+.label {
+	margin: 0;
+
+
+
+  }
+
+  .placeholder {
+	flex: 1;
+
+  }
+
+  .amount {
+	margin: 0;
+  }
+
+
 }
+
+
+
+
+
+
 
 
 #new-order-btn {
@@ -446,8 +492,6 @@ main {
 	}
 
 }
-
-/* ..... */
 
 
 @media (min-width: 400px) {
