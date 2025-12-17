@@ -41,12 +41,25 @@
 
 
 	<section id="receipt-page" class="hidden" >
-		<h2>Kvitto</h2>
-		<p> #<strong id="receipt-order-id"></strong><br> ETA: <strong id="receipt-eta"></strong> </p>
-		<div id="receipt-items"></div>
-		<div class="cart-total"><strong id="receipt-total">0 SEK</strong></div>
-		<button id="new-order-btn">GÖR EN NY BESTÄLLNING</button>
+		<div class="receipt-body">
+			<img src="./assets/kvitto-header-svgviewer-output.svg" alt="YYGS">
+			<h2>Kvitto</h2>
+			<!-- <p> #<strong id="receipt-order-id"></strong><br> ETA: <strong id="receipt-eta"></strong> </p> -->
+
+			<div id="receipt-order-id"> # </div>
+
+			<!-- <div id="receipt-eta"> ETA: </div> -->
+
+			<div id="receipt-items"></div>
+			<!-- <div class="cart-total">TOTAL: <strong id="receipt-total">0 SEK</strong></div> -->
+
+			<div id="receipt-total" class="cart-total"></div>
+		</div>
+
+			<button id="new-order-btn">GÖR EN NY BESTÄLLNING</button>
+
 	</section>
+
 
 
 </main>

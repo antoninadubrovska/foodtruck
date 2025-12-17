@@ -119,13 +119,14 @@ main {
 
 .group-buttons-wrap {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.4em;
-  margin-top: 0.4em;
+  flex-direction: column;
+  /* flex-wrap: wrap; */
+  /* justify-content: center; */
+  gap: 0.3em;
+  margin-top: 1em;
 
   button {
-	padding: 0.6em;
+	padding: 0.8em;
 	background-color: #f1f0ec3d;
 	border: none;
 	border-radius: var(--border-radius-buttons);
@@ -146,18 +147,22 @@ main {
 
 .add-btn {
 	margin-top: 1em;
-	background-color: var(--light-text);
+	background-color: var(--white);
 	padding: 0.6em;
 	border: none;
-	border-radius: var(--border-radius-buttons);
-	box-shadow: 0.4px 1.2px 2px black;
+	border-radius: 4px;
+	/* box-shadow: 0.4px 1.2px 2px black; */
+	display: flex;
+	min-width: 80%;
+	margin: 1.25em auto 0 auto;
+	display: flex;
+	justify-content: center;
 
 }
 
-/* .add-btn:hover {
-
-
-} */
+.add-btn:hover {
+	background-color: var(--light-text);
+}
 
 .add-btn:active {
 	background-color: var(--green);
@@ -258,6 +263,10 @@ main {
 	border: none;
 
 	&:hover {
+		background-color: var(--light-gray);
+	}
+
+	&:active {
 		background-color: var(--green);
 	}
 }
@@ -273,8 +282,14 @@ main {
 	/* align-items: center; */
 	gap: 0.5em;
 	/* flex: 1; */
-	background-color: var(--dark-gray);
+	background-color: var(--light-gray);
 	color: var(--white);
+	padding-bottom: 4em;
+
+	img{
+		max-width: 100%;
+		margin: 2em auto;
+	}
 
 	h3 {
 		margin: 0.4em 2em;
@@ -292,18 +307,33 @@ main {
 		/* display: flex;
 		flex-direction: column; */
 	margin: 0.5em 2em;
-	background-color: var(--light-text);
+	background-color: var(--light-gray);
+	color: var(--white);
 	padding: 0.8em;
 	border: none;
-	border-radius: var(--border-radius-buttons);
-	/* box-shadow: 0.4px 1.2px 2px black; */
+	border-radius: 4px;
+	max-width: 100%;
+	border: solid 2px var(--white);
 
-	&:hover {
+
+	}
+
+	button:hover {
+		background-color: var(--dark-gray);
+	}
+
+	button:active {
 		background-color: var(--green);
 	}
 
-	}
+}
 
+@media (min-width: 600px) {
+  #order-status-page button {
+	  max-width: 80%;
+	  margin: 0.5em auto;
+	  padding: 0.8em 5em;
+  }
 }
 
 /* RECEIPT */
@@ -311,17 +341,88 @@ main {
 #receipt-page {
 	display: flex;
 	flex-direction: column;
-	margin: 2em;
-	/* flex: 1; */
-	/* align-items: center; */
+	background-color: var(--light-gray);
 
-	button{
-		margin: 1em;
-		background-color: var(--light-text);
-		padding: 0.6em;
-		border: none;
-		border-radius: var(--border-radius-buttons);
-		/* box-shadow: 0.4px 1.2px 2px black; */
+}
+
+.receipt-body {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 0.4em;
+	max-width: 80%;
+	/* margin: auto; */
+	margin: 4em auto;
+	background-color: var(--white);
+
+	/* flex: 1; */
+	align-items: center;
+	box-shadow: 0.4px 1.2px 2px black;
+	cursor: pointer;
+
+	img {
+		margin: 2em 0 0 0;
 	}
 
+	h2{
+		font-size: 4em;
+		margin: 0 0 0.2em 0;
+
+	}
+
+}
+
+#receipt-items {
+	display: flex;
+	flex-direction: column;
+	width: 80%;
+	margin: 2em 0;
+}
+
+
+#receipt-total {
+	font-size: 1em;
+	/* font-weight: 600; */
+	background-color: var(--light-text);
+	padding: 0.8em;
+	/* border-radius: 4px; */
+	min-width: 100%;
+	text-align: center;
+}
+
+
+#new-order-btn {
+
+	background-color: var(--light-text);
+	font-size: 1em;
+	padding: 2em 0;
+	border: none;
+	/* border-radius: 2px; */
+	/* max-width: 80%; */
+	margin: 1em auto;
+	background-color: var(--dark-gray);
+	padding: 0.8em 4em;
+	border: none;
+	width: 80%;
+	box-shadow: 0.8px 2px 3px black;
+	cursor: pointer;
+
+	&:hover {
+		box-shadow: 0.4px 1.2px 2px black;;
+	}
+	&:active {
+		background-color: var(--green);
+	}
+
+}
+
+/* ..... */
+
+
+@media (min-width: 400px) {
+  .group-buttons-wrap {
+	flex-direction: row;
+	flex-wrap: wrap;
+    justify-content: center;
+  }
 }

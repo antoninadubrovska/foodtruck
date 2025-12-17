@@ -14,6 +14,8 @@ const newOrderBtn = document.getElementById("new-order-btn")
 const orderStatusPage = document.getElementById("order-status-page")
 
 export async function showReceipt(orderId) {
+
+	// fetches final receipt
     const receipt = await getReceipt(orderId)
 
     if (!receipt || !receipt.items) {
@@ -24,9 +26,9 @@ export async function showReceipt(orderId) {
 
 	// render
     receiptItems.innerHTML = ""
-    receiptOrderId.textContent = receipt.id
-    receiptTimestamp.textContent =
-        new Date(receipt.timestamp).toLocaleTimeString("sv-SE")
+    receiptOrderId.textContent = `#` + receipt.id
+    // receiptTimestamp.textContent =` ETA: ` +
+    //     new Date(receipt.timestamp).toLocaleTimeString("sv-SE")
 
     receipt.items.forEach(item => {
         const row = document.createElement("div")
@@ -51,11 +53,13 @@ export async function showReceipt(orderId) {
         receiptItems.appendChild(row)
     })
 
-	receiptTotalEl.textContent = `${receipt.orderValue} SEK`
+	// backend-calculated total
+	receiptTotalEl.textContent = `TOTALT: ${receipt.orderValue} SEK`
 	orderStatusPage.classList.add('hidden')
     receiptPage.classList.remove("hidden")
 }
 
+// Full loop complete
 newOrderBtn.addEventListener("click", () => {
     receiptPage.classList.add("hidden")
     showMenuPage()

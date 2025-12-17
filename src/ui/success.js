@@ -8,13 +8,17 @@ const etaEl = document.getElementById("status-eta")
 const seeReceiptBtn = document.getElementById("see-receipt-btn")
 const newOrderBtn = document.getElementById("new-order-btn-status")
 
+
+// This is temporary SPA state as Button click happens later & ORDER ID IS still needed:
 let currentOrderId = null
 
 export async function showOrderStatus(orderId) {
   currentOrderId = orderId
 
+  //reuse receipt data
   const receipt = await getReceipt(orderId)
 
+	// Renders order number and estimated time
   orderIdEl.textContent = receipt.id
   etaEl.textContent =
     new Date(receipt.timestamp).toLocaleTimeString("sv-SE")
