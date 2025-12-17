@@ -1,57 +1,5 @@
 
 
-
-// Keep tenant ID in localStorage
-// export async function initTenant( tenantName = "Antonina") {
-//     let tenantId = localStorage.getItem("tenantId")
-
-//     if (!tenantId) {
-//         const tenant = await createTenant(tenantName)
-//         tenantId = tenant.id
-//         localStorage.setItem("tenantId", tenantId)
-//         console.log("Created new tenant:", tenantId)
-//     } else {
-//         console.log("Using existing tenant:", tenantId)
-//     }
-
-//     return tenantId
-// }
-
-// let tenantId = null
-
-// export async function initTenant(tenantName = "Ninalina") {
-//     //let tenantId = localStorage.getItem("tenantId")
-
-//     if (!tenantId) {
-//         try {
-//             const tenant = await createTenant(tenantName)
-//             tenantId = tenant.id
-//             //localStorage.setItem("tenantId", tenantId)
-//             console.log("Created new tenant:", tenantId)
-//         } catch (error) {
-//             if (error.message.includes("already exists")) {
-//                 console.warn("Tenant already exists. Use existing tenantId manually.")
-//                 // If you know the ID of the existing tenant, assign it here:
-//                 // Hardcode or prompt user for the ID
-//                 tenantId = "YOUR_EXISTING_TENANT_ID"
-//                 //
-//             } else {
-//                 throw error
-//             }
-//         }
-//     }
-
-//     return tenantId
-// }
-
-// // Getter to use tenantId elsewhere
-// export function getTenantId() {
-//     if (!tenantId) {
-//         throw new Error("Tenant ID not initialized. Call initTenant() first.")
-//     }
-//     return tenantId
-// }
-
 // In-memory cart only
 let cart = []
 

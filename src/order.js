@@ -1,13 +1,14 @@
 
-// import { getTenantId } from "./store.js"
+import { getTenantId } from "./tenant.js"
 import { createOrder } from "./api.js"
 import { getCartItems } from "./store.js"
 
 
-const tenantId = 'mq65'
+//const tenantId = 'mq65'
 
 async function submitOrder() {
 	//const tenantId = localStorage.getItem("tenantId")
+	const tenantId = getTenantId()
 
     const cartItems = getCartItems()
 

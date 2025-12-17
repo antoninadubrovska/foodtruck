@@ -46,10 +46,6 @@ export async function showReceipt(orderId) {
             </div>
         `
 
-        // const dots = document.createElement("span")
-        // dots.classList.add("menu-dots")
-        // row.insertBefore(dots, row.querySelector(".cart-right"))
-
         receiptItems.appendChild(row)
     })
 

@@ -88,6 +88,7 @@ export function setupCart() {
     checkoutBtn.addEventListener("click", async () => {
 		const orderId = await submitOrder()
 		console.log('Order Id: ', orderId)
+		
 		if (!orderId) {
 			console.error("Order failed or no orderId returned")
 			return
