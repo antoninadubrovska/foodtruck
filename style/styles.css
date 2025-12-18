@@ -66,6 +66,10 @@ main {
 		top: 1.7em;
 		right: -0.7em;
 	}
+
+	img:active {
+		box-shadow: var(--box-shadow-main);
+	}
 }
 
 .menu-items-container {
@@ -147,6 +151,10 @@ main {
   background-color: var(--dark-gray);
 }
 
+.item-wonton:active {
+  box-shadow: var(--box-shadow-main);
+}
+
 .menu-section {
   margin-bottom: 2em;
   border: 1px solid var(--light-gray);
@@ -177,32 +185,31 @@ main {
   }
 
   button:active{
-	background-color: var(--green);
+	box-shadow: var(--box-shadow-main);
   }
 }
 
-.add-btn {
+/* .add-btn {
 	margin-top: 1em;
 	background-color: var(--white);
 	padding: 0.6em;
 	border: none;
 	border-radius: 4px;
-	/* box-shadow: 0.4px 1.2px 2px black; */
 	display: flex;
 	min-width: 80%;
 	margin: 1.25em auto 0 auto;
 	display: flex;
 	justify-content: center;
 
-}
+} */
 
-.add-btn:hover {
+/* .add-btn:hover {
 	background-color: var(--light-text);
 }
 
 .add-btn:active {
 	background-color: var(--green);
-}
+} */
 
 
 
@@ -229,8 +236,19 @@ main {
 		/* Force the svg image to respect its container */
   	    height: auto;
 		align-self: flex-end;
+		cursor: pointer;
 
+
+		/* img:hover {
+			opacity: 0.8;
+		} */
 	}
+
+	/* to remove background */
+	/* img:active {
+
+		box-shadow: var(--box-shadow-main);
+	} */
 
 }
 
@@ -256,9 +274,9 @@ main {
     display: flex;
     /* justify-content: space-between; */
     align-items: center;
-    padding: 8px 0;
+    padding: 0.6em 0;
     border-bottom: 1px solid #ddd;
-    margin-bottom: 10px;
+    margin-bottom: 1em;
 	align-items: flex-end;
 }
 
@@ -289,6 +307,10 @@ main {
 	&:hover {
 		background-color: var(--light-gray);
 	}
+
+	&:active {
+		box-shadow: var(--box-shadow-main);
+	}
 }
 
 
@@ -312,13 +334,13 @@ main {
 	color: var(--white);
 	font-weight: 600;
 
-	&:hover {
+	&:active {
 		box-shadow: 0.4px 1.2px 2px black;
 	}
 
-	&:active {
+	/* &:hover {
 		background-color: var(--green);
-	}
+	} */
 }
 
 
@@ -406,7 +428,7 @@ main {
 	gap: 0.4em;
 	/* Constrain the receipt body - width + max-width*/
 	width: 100%;
-	max-width: 80%;
+	max-width: 60%;
 	margin-top: 2em;
 	margin-bottom: 2em;
 	margin-left: auto;
@@ -429,7 +451,7 @@ main {
 	}
 
 	h3{
-		font-size: 3em;
+		font-size: 1.4em;
 		margin: 0 0 0.2em 0;
 
 	}
@@ -441,6 +463,10 @@ main {
 	flex-direction: column;
 	width: 80%;
 	margin: 2em 0;
+
+	span{
+		font-size: 0.8em;
+	}
 
 	.cart-item{
 
@@ -487,38 +513,25 @@ main {
 	width: 80%;
 	/* margin: auto; */
 	font-weight: 600;
-	font-size: 18px;
+	font-size: 1.2em;
 	align-items: center;
-
 
 .label {
 	margin: 0;
-
-
-
   }
 
   .placeholder {
 	flex: 1;
-
   }
 
   .amount {
 	margin: 0;
   }
 
-
 }
 
 
-
-
-
-
-
-
 #new-order-btn {
-
 	background-color: var(--light-text);
 	font-size: 1em;
 	padding: 2em 0;
@@ -530,7 +543,7 @@ main {
 	background-color: var(--dark-gray);
 	padding: 1.2em 4em;
 	border: none;
-	width: 80%;
+	width: 60%;
 	box-shadow: 0.8px 2px 3px black;
 	/* cursor: pointer; */
 
@@ -551,3 +564,16 @@ main {
     justify-content: center;
   }
 }
+
+@media (min-width: 600px) {
+  .menu-and-cart {
+	  width: 60%;
+  }
+  /* #receipt-body {
+	width: 100%;
+	max-width: 60%;
+  } */
+  #cart-page {
+	width: 50%;
+	margin: auto;
+}}

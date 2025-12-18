@@ -4,8 +4,10 @@ import { submitOrder } from "../order.js"
 // For console testing, temporarily expose submitOrder globally
 // window.submitOrder = submitOrder
 import { showOrderStatus } from "./success.js"
+import { showMenuPage } from "./menu.js"
 
 //import { showReceipt } from "./receipt.js"
+
 
 
 const cartPage = document.getElementById("cart-page")
@@ -13,9 +15,13 @@ const cartContainer = document.getElementById("cart-items")
 const cartTotalEl = document.getElementById("cart-total")
 const checkoutBtn = document.getElementById("checkout-btn")
 
+
+
 export function renderCart() {
 	const items = getCartItems()
 	cartContainer.innerHTML = ""
+
+
 
 	if (!items.length) {
 		cartContainer.innerHTML = "<p>Din varukorg är tom</p>"
@@ -34,7 +40,7 @@ export function renderCart() {
                 <h4>${item.name}</h4>
                 <div class="cart-controls">
                     <button class="minus">−</button>
-                    <span class="qty">${item.quantity}</span>
+                    <span class="qty">${item.quantity} stycken</span>
                     <button class="plus">+</button>
                 </div>
             </div>
@@ -74,7 +80,12 @@ export function renderCart() {
 	})
 
 	cartTotalEl.textContent = `${total} SEK`
+
+
+
 }
+
+
 
 export function updateCartCounter() {
 	const badge = document.querySelector(".cart-count")
@@ -84,6 +95,10 @@ export function updateCartCounter() {
 export function setupCart() {
 	renderCart()
 	updateCartCounter()
+
+	// back to menu
+	const cartBackImg = cartPage.querySelector("img")
+	cartBackImg.addEventListener("click", showMenuPage)
 
 	checkoutBtn.addEventListener("click", async () => {
 		const orderId = await submitOrder()

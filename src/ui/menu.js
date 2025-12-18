@@ -50,12 +50,12 @@ function showCartPage() {
 
 cartIcon.addEventListener("click", showCartPage)
 
-// back button in cart
-const backBtn = document.createElement("button")
-backBtn.classList.add('checkout-or-goback-group')
-backBtn.textContent = "Tillbaka till menyn"
-backBtn.addEventListener("click", showMenuPage)
-cartPage.appendChild(backBtn)
+// // back button in cart
+// const backBtn = document.createElement("button")
+// backBtn.classList.add('checkout-or-goback-group')
+// backBtn.textContent = "Tillbaka till menyn"
+// backBtn.addEventListener("click", showMenuPage)
+// cartPage.appendChild(backBtn)
 
 function renderWontonSection(items) {
     const section = document.createElement('section')
@@ -133,38 +133,48 @@ function createMenuItem(item) {
     desc.textContent = item.description
     el.appendChild(desc)
 
-    // Click to toggle button, no cart modification here
-    el.addEventListener("click", () => {
-		el.classList.toggle("active")
+    // // Click to toggle button, no cart modification here
+    // el.addEventListener("click", () => {
+	// 	el.classList.toggle("active")
 
-		const btn = el.querySelector(".add-btn")
+	// 	const btn = el.querySelector(".add-btn")
 
-        if (el.classList.contains("active")) {
-            if (!btn) showAddButton(el, item)
-        } else {
-            if (btn) btn.remove() // remove only when toggling off
-        }
-    })
+    //     if (el.classList.contains("active")) {
+    //         if (!btn) showAddButton(el, item)
+    //     } else {
+    //         if (btn) btn.remove() // remove only when toggling off
+    //     }
+	// })
+
+	el.addEventListener("click", () => {
+		addToCart(item)
+		updateCartCounter()
+
+		// If cart page is visible, update immediately
+		if (!cartPage.classList.contains("hidden")) {
+			renderCart()
+		}
+	})
 
     return el
 }
 
-function showAddButton(parent, item) {
-    const btn = document.createElement("button")
-    btn.classList.add("add-btn")
-    btn.textContent = "+ Lägg till"
+// function showAddButton(parent, item) {
+//     const btn = document.createElement("button")
+//     btn.classList.add("add-btn")
+//     btn.textContent = "+ Lägg till"
 
-    btn.addEventListener("click", e => {
-        e.stopPropagation()
-        addToCart(item)        // increment quantity in cart
-        updateCartCounter()    // update badge
+//     btn.addEventListener("click", e => {
+//         e.stopPropagation()
+//         addToCart(item)        // increment quantity in cart
+//         updateCartCounter()    // update badge
 
-		// If cart page is visible, re-render it so user sees the update immediately
-        const cartPage = document.getElementById("cart-page")
-        if (cartPage && !cartPage.classList.contains("hidden")) {
-            renderCart()
-        }
-    })
+// 		// If cart page is visible, re-render it so user sees the update immediately
+//         const cartPage = document.getElementById("cart-page")
+//         if (cartPage && !cartPage.classList.contains("hidden")) {
+//             renderCart()
+//         }
+//     })
 
-    parent.appendChild(btn)
-}
+//     parent.appendChild(btn)
+// }
