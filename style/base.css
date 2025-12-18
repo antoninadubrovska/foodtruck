@@ -25,5 +25,8 @@ Font: Frutiger Next Bold */
 	--button-gray: #F1F0EC3D;
 	--light-text: #F4F3F1F0;
     --border-radius-buttons: 6px;
+	--text-shadow-main: 0.5px 0.3px 2px rgb(30, 29, 29);
+	--light-gray-mlus-minus-buttons:rgba(53, 49, 49, 0.24);
+
 }
 

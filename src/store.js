@@ -11,7 +11,7 @@ export function addToCart(item) {
         cart.push({ ...item, quantity: 1 })
     }
 }
-
+/** store */
 export function removeFromCart(itemId) {
     cart = cart.filter(i => i.id !== itemId)
 }

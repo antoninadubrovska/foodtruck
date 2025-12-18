@@ -5,7 +5,7 @@ import { submitOrder } from "../order.js"
 // window.submitOrder = submitOrder
 import { showOrderStatus } from "./success.js"
 
-import { showReceipt } from "./receipt.js"
+//import { showReceipt } from "./receipt.js"
 
 
 const cartPage = document.getElementById("cart-page")
@@ -14,22 +14,22 @@ const cartTotalEl = document.getElementById("cart-total")
 const checkoutBtn = document.getElementById("checkout-btn")
 
 export function renderCart() {
-    const items = getCartItems()
-    cartContainer.innerHTML = ""
+	const items = getCartItems()
+	cartContainer.innerHTML = ""
 
-    if (!items.length) {
-        cartContainer.innerHTML = "<p>Din varukorg är tom</p>"
-        cartTotalEl.textContent = "0 SEK"
-        return
-    }
+	if (!items.length) {
+		cartContainer.innerHTML = "<p>Din varukorg är tom</p>"
+		cartTotalEl.innerHTML = "0 SEK"
+		return
+	}
 
 	let total = 0
 
 	items.forEach(item => {
-        const row = document.createElement("div")
-        row.classList.add("cart-item")
+		const row = document.createElement("div")
+		row.classList.add("cart-item")
 
-        row.innerHTML = `
+		row.innerHTML = `
             <div class="cart-left">
                 <h4>${item.name}</h4>
                 <div class="cart-controls">
@@ -44,62 +44,62 @@ export function renderCart() {
         `
 
 		// Create dots for this row TODO
-    const dots = document.createElement("span")
-    dots.classList.add("menu-dots")
+		const dots = document.createElement("span")
+		dots.classList.add("menu-dots")
 
-    // Insert dots between plus button and price
-    const cartRight = row.querySelector(".cart-right")
-    row.insertBefore(dots, cartRight)
+		// Insert dots between plus button and price
+		const cartRight = row.querySelector(".cart-right")
+		row.insertBefore(dots, cartRight)
 
-        // PLUS BUTTON
-        row.querySelector(".plus").addEventListener("click", () => {
-            updateQuantity(item.id, item.quantity + 1)
-            renderCart()
-            updateCartCounter()
-        })
+		// PLUS BUTTON
+		row.querySelector(".plus").addEventListener("click", () => {
+			updateQuantity(item.id, item.quantity + 1)
+			renderCart()
+			updateCartCounter()
+		})
 
-        // MINUS BUTTON
-        row.querySelector(".minus").addEventListener("click", () => {
-            if (item.quantity > 1) {
-                updateQuantity(item.id, item.quantity - 1)
-            } else {
-                removeFromCart(item.id)
-            }
-            renderCart()
-            updateCartCounter()
-        })
+		// MINUS BUTTON
+		row.querySelector(".minus").addEventListener("click", () => {
+			if (item.quantity > 1) {
+				updateQuantity(item.id, item.quantity - 1)
+			} else {
+				removeFromCart(item.id)
+			}
+			renderCart()
+			updateCartCounter()
+		})
 
-        cartContainer.appendChild(row)
-        total += item.price * item.quantity
+		cartContainer.appendChild(row)
+		total += item.price * item.quantity
 	})
 
-    cartTotalEl.textContent = `${total} SEK`
+	cartTotalEl.textContent = `${total} SEK`
 }
 
 export function updateCartCounter() {
-    const badge = document.querySelector(".cart-count")
-    badge.textContent = getCartCount()
+	const badge = document.querySelector(".cart-count")
+	badge.textContent = getCartCount()
 }
 
 export function setupCart() {
-    renderCart()
-    updateCartCounter()
+	renderCart()
+	updateCartCounter()
 
-    checkoutBtn.addEventListener("click", async () => {
+	checkoutBtn.addEventListener("click", async () => {
 		const orderId = await submitOrder()
 		console.log('Order Id: ', orderId)
-		
+
 		if (!orderId) {
 			console.error("Order failed or no orderId returned")
 			return
 		}
-        clearCart()
-        renderCart()
-        updateCartCounter()
-        cartPage.classList.add("hidden")
+		clearCart()
+		renderCart()
+		updateCartCounter()
+		cartPage.classList.add("hidden")
 		// await showReceipt(orderId)
 		showOrderStatus(orderId)
-    });
+	});
 }
 
 

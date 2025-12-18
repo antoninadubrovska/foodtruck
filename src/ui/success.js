@@ -13,28 +13,28 @@ const newOrderBtn = document.getElementById("new-order-btn-status")
 let currentOrderId = null
 
 export async function showOrderStatus(orderId) {
-  currentOrderId = orderId
+currentOrderId = orderId
 
   //reuse receipt data
-  const receipt = await getReceipt(orderId)
+const receipt = await getReceipt(orderId)
 
 	// Renders order number and estimated time
-  orderIdEl.textContent = receipt.id
-  etaEl.textContent =
+orderIdEl.textContent = receipt.id
+etaEl.textContent =
     new Date(receipt.timestamp).toLocaleTimeString("sv-SE")
 
 //   hideAllPages()
-  page.classList.remove("hidden")
+page.classList.remove("hidden")
 }
 
 seeReceiptBtn.addEventListener("click", () => {
-  page.classList.add("hidden")
-  showReceipt(currentOrderId)
+page.classList.add("hidden")
+showReceipt(currentOrderId)
 })
 
 newOrderBtn.addEventListener("click", () => {
-  page.classList.add("hidden")
-  showMenuPage()
+page.classList.add("hidden")
+showMenuPage()
 })
 
 // function hideAllPages() {

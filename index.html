@@ -1,36 +1,40 @@
 <!DOCTYPE html>
 <html lang="sv">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Foodtruck</title>
-	<link rel="stylesheet" href="./style/base.css">
-	<link rel="stylesheet" href="./style/styles.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Foodtruck</title>
+    <link rel="stylesheet" href="./style/base.css" />
+    <link rel="stylesheet" href="./style/styles.css" />
 
-	<script type="module" src="./src/main.js"></script>
+    <script type="module" src="./src/main.js"></script>
 </head>
 <body>
-<main>
-
-	<div class="menu-container">
+	<main>
+	<section class="menu-container">
+		<div class="menu-and-cart">
 		<div class="cart-icon">
-			<img src="./assets/cart.svg" alt="cart">
+			<img src="./assets/cart.svg" alt="cart" />
 			<span class="cart-count">0</span>
 		</div>
+		<h2 class="menu-header">MENY</h2>
 		<div class="menu-items-container"></div>
-	</div>
-
-
-	<section id="cart-page" class="hidden">
-		<div id="cart-items"></div>
-		<p>Total: <span id="cart-total">0 SEK</span></p>
-		<button id="checkout-btn" class="checkout-or-goback-group">Checkout</button>
+		</div>
 	</section>
 
+	<section id="cart-page" class="hidden">
+		<img src="./assets/cart.svg" alt="cart" />
+		<div id="cart-items"></div>
+		<p>Total: <span id="cart-total">0 SEK</span></p>
+		<button id="checkout-btn" class="checkout-or-goback-group">
+		TAKE MY MONEY
+		</button>
+	</section>
 
-	<section id="order-status-page" class="hidden"><img src="./assets/boxtop.svg" alt="boxtop">
+	<section id="order-status-page" class="hidden">
+		<img src="./assets/boxtop.svg" alt="boxtop" />
 
-		<h3>DINA WONTONS TILLÄGAS</h3>
+		<h3>DINA WONTONS TILLAGAS</h3>
 
 		<!-- TODO # ETA:-->
 		<p id="status-order-id">#</p>
@@ -39,29 +43,20 @@
 		<button id="new-order-btn-status">GÖR EN NY BESTÄLLNING</button>
 	</section>
 
-
-	<section id="receipt-page" class="hidden" >
+	<section id="receipt-page" class="hidden">
 		<div class="receipt-body">
-			<img src="./assets/kvitto-header-svgviewer-output.svg" alt="YYGS">
-			<h3>Kvitto</h3>
+		<img src="./assets/kvitto-header-svgviewer-output.svg" alt="YYGS" />
+		<h3>Kvitto</h3>
 
-			<div id="receipt-order-id"> # </div>
-			<!-- <div id="receipt-eta"> ETA: </div> -->
-			<div id="receipt-items"></div>
+		<div id="receipt-order-id">#</div>
+		<!-- <div id="receipt-eta"> ETA: </div> -->
+		<div id="receipt-items"></div>
 
-
-
-			<div id="receipt-total" class="cart-total"></div>
-
+		<div id="receipt-total" class="cart-total"></div>
 		</div>
 
-			<button id="new-order-btn">GÖR EN NY BESTÄLLNING</button>
-
+		<button id="new-order-btn">GÖR EN NY BESTÄLLNING</button>
 	</section>
-
-
-
-</main>
-
+	</main>
 </body>
 </html>
