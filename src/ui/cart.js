@@ -101,19 +101,33 @@ export function setupCart() {
 	cartBackImg.addEventListener("click", showMenuPage)
 
 	checkoutBtn.addEventListener("click", async () => {
-		const orderId = await submitOrder()
-		console.log('Order Id: ', orderId)
 
-		if (!orderId) {
-			console.error("Order failed or no orderId returned")
-			return
+		const result = await submitOrder()
+
+		if (result) {
+			const { orderId, etaTime, curTime } = result
+			console.log(orderId, etaTime, curTime)
+			const diffMs = new Date(etaTime).getTime() - new Date(curTime).getTime()
+			const minutes = Math.floor(diffMs / 60000)
+
+			console.log('DIFF: ', minutes)
+
+			//		const orderId = await submitOrder()
+			//		console.log('Order Id: ', orderId)
+
+
+			if (!orderId) {
+				console.error("Order failed or no orderId returned")
+				return
+			}
+
+			clearCart()
+			renderCart()
+			updateCartCounter()
+			cartPage.classList.add("hidden")
+			// await showReceipt(orderId)
+			showOrderStatus(orderId, minutes)
 		}
-		clearCart()
-		renderCart()
-		updateCartCounter()
-		cartPage.classList.add("hidden")
-		// await showReceipt(orderId)
-		showOrderStatus(orderId)
 	});
 }
 
