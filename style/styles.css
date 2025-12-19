@@ -351,7 +351,7 @@ main {
 #order-status-page {
 	display: flex;
 	flex-direction: column;
-	/* align-items: center; */
+	align-items: center;
 	gap: 0.5em;
 	/* flex: 1; */
 	background-color: var(--light-gray);
@@ -377,38 +377,51 @@ main {
 		/* font-size: small; */
 	}
 
-	button{
-		/* display: flex;
-		flex-direction: column; */
-	margin: 0.5em 2em;
-	background-color: var(--light-gray);
-	color: var(--white);
-	padding: 0.8em;
-	border: none;
-	border-radius: 4px;
-	max-width: 100%;
-	border: solid 2px var(--white);
-
-
+	#see-receipt-btn {
+		border: solid 2px var(--white);
+		background-color: var(--light-gray);
 	}
 
-	button:hover {
+	#new-order-btn-status {
 		background-color: var(--dark-gray);
+		border: solid 2px var(--dark-gray);
+
 	}
 
-	button:active {
-		background-color: var(--green);
-	}
+
 
 }
 
-@media (min-width: 600px) {
+.status-order-button-wrapper {
+	display: flex;
+  	gap: 0.8em;
+  	/* justify-content: center; */
+	flex-direction: column;
+}
+
+.status-order-button-wrapper button {
+	flex: 1;  /* both buttons take equal width */
+	max-width: 400px;
+	/* margin: 0.5em 2em; */
+	color: var(--white);
+	padding: 1.4em 4em;
+	border-radius: 4px;
+
+	&:active{
+		box-shadow: var(--box-shadow-main);
+	}
+
+  }
+
+
+
+/* @media (min-width: 600px) {
   #order-status-page button {
 	  max-width: 80%;
 	  margin: 0.5em auto;
 	  padding: 0.8em 5em;
   }
-}
+} */
 
 /* RECEIPT */
 
