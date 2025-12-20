@@ -131,12 +131,12 @@ main {
   flex: 1;
   margin: 0 0.25em;
   height: 2px;
-  /* border-bottom: 1.6px dashed var(--white); */
-  background-image: repeating-linear-gradient(
+  border-bottom: 1.3px dashed var(--white);
+  /* background-image: repeating-linear-gradient(
     to right,
     var(--white) 0 2px,
     transparent 2px 4px
-  );
+  ); */
 }
 
 .item-wonton {
@@ -227,12 +227,15 @@ main {
 	flex-direction: column;
 	margin: auto 2em;
 	/* flex: 1; */
+	background-color: var(--light-text);
+	padding: 0 1em 2em 1em;
 
 	img{
 
 		/* margin: 1em 2em em 10em; */
 		margin-top: 2em;
-		margin-bottom: 2em;
+		margin-bottom: 4em;
+		margin-right: 1em;
 		/* Force the svg image to respect its container */
   	    height: auto;
 		align-self: flex-end;
@@ -253,40 +256,76 @@ main {
 }
 
 #cart-page .menu-dots {
-	margin: 0 1em;
-    background-image: repeating-linear-gradient(
+	margin: 0.1em;
+	border-bottom: 1.3px dashed var(--dark-gray);
+    /* background-image: repeating-linear-gradient(
         to right,
-        var(--light-text) 0 2px,
+        var(--light-gray) 0 2px,
         transparent 2px 4px
-    );
+    ); */
 }
 
 /* total price */
 #cart-page p {
-	margin: 1.2em 0;
+	margin: 0.5em 0;
 	/* font-size: larger; */
-	font-weight: 600;
+	/* font-weight: 600; */
 
 
 }
 
-.cart-item {
+/* .cart-item {
     display: flex;
     /* justify-content: space-between; */
-    align-items: center;
-    padding: 0.6em 0;
+    /* align-items: center; */
+    /* padding: 0.6em 0;
     border-bottom: 1px solid #ddd;
-    margin-bottom: 0.2em;
-	align-items: flex-end;
-}
+	flex-direction: column; */
+    /* margin-bottom: 0.2em; */
+	/* align-items: flex-end;
+} */
+
+.cart-item {
+	display: grid;
+	grid-template-columns: auto 1fr auto;
+	grid-template-rows: auto auto;
+	align-items: end;
+	margin-bottom: 1.1em;
+	border-bottom: 1px solid #ddd;
+
+	.qty{
+		font-size: 0.8em;
+	}
+  }
+
+  .cart-left {
+	grid-column: 1;
+	grid-row: 1 / 3;   /* spans both rows */
+  }
+
+  .menu-dots {
+	grid-column: 2;
+	grid-row: 1;
+  }
+
+  .cart-right {
+	grid-column: 3;
+	grid-row: 1;
+  }
+
 
 .cart-left {
-    display: flex;
-    flex-direction: column;
+    /* display: flex;
+    flex-direction: column; */
     gap: 4px;
 	h4{
-		margin-left: 0.4em;
-		margin-bottom: 0.6em;
+		margin-left: 0.1em;
+		margin-bottom: 0.4em;
+		font-size: 1.2em;
+		text-transform: uppercase;
+		font-weight: 700;
+		font-family: Fira Sans;
+		letter-spacing: 0%;
 
 	}
 }
@@ -294,15 +333,17 @@ main {
 .cart-controls {
     display: flex;
     align-items: center;
-    gap: 0.6em;
+    gap: 0.5em;
+	padding-bottom: 0.4em;
 }
 
 .minus, .plus{
 	border-radius: 50%;
 	background-color: var(--light-gray-mlus-minus-buttons);
-	padding: 0.4em 0.6em;
-    font-size: 16px;
+	padding: 0.1em 0.4em;
+    font-size: 20px;
 	border: none;
+	cursor: pointer;
 
 	&:hover {
 		background-color: var(--light-gray);
@@ -319,13 +360,57 @@ main {
 	margin-bottom: 0.2em;
 
 	.price {
-		font-weight: bold;
+		/* font-weight: bold; */
+		font-size: 1.2em;
+		font-weight: 600;
 	}
 
 }
 
+.cart-total-inner{
+	padding: 1em 0;
+	width: 100%;
+	/* margin: auto; */
+	font-weight: 600;
+	/* font-size: 1.2em; */
+	display: grid;
+	grid-template-columns: 2fr 1fr 2fr;
+	grid-template-rows: auto auto;
+	background-color: var(--light-gray-mlus-minus-buttons);
+	padding: 1em;
+	border-radius: var(--border-radius-buttons);
 
-.checkout-or-goback-group {
+	.label {
+		grid-column: 1;
+		grid-row: 1;
+		font-size: 22px;
+		margin: 0;
+		text-align: left;
+	}
+
+	.moms-info{
+		grid-column: 1;
+		grid-row: 2;
+		font-size: 0.8em;
+		/* text-align: center; */
+		color: var(--dark-gray);
+		/* margin-top: 0.2em; */
+	}
+
+	.amount{
+		grid-column: 3;
+		grid-row: 1/3;
+		text-align: right;
+		font-weight: 700;
+		font-size: 32px;
+	}
+}
+
+
+
+
+
+.checkout-btn {
 	margin: 0.6em 0;
 	padding: 1em;
 	border-radius: var(--border-radius-buttons);
@@ -480,7 +565,7 @@ main {
 
 		/* reuse cart-item styles from cart, adjusting them to fit the receipt */
 		border-bottom: none;
-		margin-bottom: 0.2em;
+		margin-bottom: 1.2em;
 
 		.cart-left h4 {
 			margin: 0;

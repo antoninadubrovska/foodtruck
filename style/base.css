@@ -10,7 +10,7 @@ Font: Frutiger Next Bold */
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-	font-family: 'Frutiger Next', sans-serif;
+	font-family: 'Fira Sans', sans-serif;
 
 }
 
@@ -30,4 +30,6 @@ Font: Frutiger Next Bold */
 	--box-shadow-main: 0.8px 0.6px 5px rgb(30, 29, 29);
 
 }
+
+
 

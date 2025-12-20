@@ -81,6 +81,16 @@ export function renderCart() {
 
 	cartTotalEl.textContent = `${total} SEK`
 
+	cartTotalEl.innerHTML = `
+	<div class="cart-total-inner">
+		<span class="label"> TOTALT</span>
+		<span class="placeholder"></span>
+		<span class='moms-info'>inkl. 20% moms </span>
+
+		<span class="amount">${total} SEK</span>
+	</div>
+	`
+
 
 
 }
