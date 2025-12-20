@@ -16,14 +16,14 @@ const orderStatusPage = document.getElementById("order-status-page")
 // }
 
 //menu always wins when called - authoritative
-export function showMenuPage() {
+function showMenuPage() {
 	menuContainer.classList.remove("hidden")
 	cartPage.classList.add("hidden")
 	receiptSection.classList.add("hidden")
 	orderStatusPage.classList.add("hidden")
   }
 
-export async function setupMenu() {
+async function setupMenu() {
 	menuItemsContainer.innerHTML = ''
     const menuData = await getMenu()
     if (!menuData || !menuData.items) {
@@ -158,23 +158,4 @@ function createMenuItem(item) {
 
     return el
 }
-
-// function showAddButton(parent, item) {
-//     const btn = document.createElement("button")
-//     btn.classList.add("add-btn")
-//     btn.textContent = "+ Lägg till"
-
-//     btn.addEventListener("click", e => {
-//         e.stopPropagation()
-//         addToCart(item)        // increment quantity in cart
-//         updateCartCounter()    // update badge
-
-// 		// If cart page is visible, re-render it so user sees the update immediately
-//         const cartPage = document.getElementById("cart-page")
-//         if (cartPage && !cartPage.classList.contains("hidden")) {
-//             renderCart()
-//         }
-//     })
-
-//     parent.appendChild(btn)
-// }
+export { showMenuPage, setupMenu }

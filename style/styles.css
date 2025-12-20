@@ -276,7 +276,7 @@ main {
     align-items: center;
     padding: 0.6em 0;
     border-bottom: 1px solid #ddd;
-    margin-bottom: 1em;
+    margin-bottom: 0.2em;
 	align-items: flex-end;
 }
 
@@ -384,7 +384,7 @@ main {
 
 	#new-order-btn-status {
 		background-color: var(--dark-gray);
-		border: solid 2px var(--dark-gray);
+		border: solid 6px var(--dark-gray);
 
 	}
 
@@ -430,8 +430,7 @@ main {
 	flex-direction: column;
 	background-color: var(--light-gray);
 	/* align-items: center; */
-
-
+	flex: 1;
 }
 
 .receipt-body {
@@ -439,43 +438,39 @@ main {
 	flex-direction: column;
 	justify-content: center;
 	gap: 0.4em;
-	/* Constrain the receipt body - width + max-width*/
 	width: 100%;
-	max-width: 60%;
-	margin-top: 2em;
-	margin-bottom: 2em;
-	margin-left: auto;
-	margin-right: auto;
-	/* margin: auto; */
-	/* margin: 4em auto; */
+	max-width: 370px;
+	margin: 2em auto 1em auto;
 	background-color: var(--white);
-
-	/* flex: 1; */
 	align-items: center;
-	box-shadow: 0.4px 1.2px 2px black;
+	box-shadow: var(--box-shadow-main);
 	cursor: pointer;
 
 	img {
-		margin: 2em 0 0 0;
+		margin: 2em 0;
 		/* Force the svg image to respect its container */
 		max-width: 100%;
   		height: auto;
-
 	}
 
 	h3{
-		font-size: 1.4em;
-		margin: 0 0 0.2em 0;
+		font-size: 1.2em;
+		margin: 0 0 0.1em 0;
+		text-transform: uppercase;
 
 	}
 
-}
+	.cart-right .price {
+		font-weight: bold;
+		/* font-size: 2em; */
+		font-size: larger;
+}}
 
 #receipt-items {
 	display: flex;
 	flex-direction: column;
 	width: 80%;
-	margin: 2em 0;
+	margin: 1.2em 0;
 
 	span{
 		font-size: 0.8em;
@@ -484,14 +479,17 @@ main {
 	.cart-item{
 
 		/* reuse cart-item styles from cart, adjusting them to fit the receipt */
+		border-bottom: none;
+		margin-bottom: 0.2em;
 
 		.cart-left h4 {
 			margin: 0;
-			font-size: 1em;
+			font-size: 0.8em;
+			text-transform: uppercase;
 		}
 
 		.menu-dots {
-			border-bottom: 0.1px dashed var(--light-text);
+			border-bottom: 0.1px dashed var(--dark-gray);
 		}
 	}
 
@@ -522,11 +520,11 @@ main {
 
   .receipt-total-inner {
 	display: flex;
-	padding: 1.8em 0;
+	padding: 1.6em 0;
 	width: 80%;
 	/* margin: auto; */
 	font-weight: 600;
-	font-size: 1.2em;
+	font-size: 1em;
 	align-items: center;
 
 .label {
@@ -552,13 +550,13 @@ main {
 	/* border-radius: 2px; */
 	/* max-width: 80%; */
 	color: var(--light-text);
-	margin: 1em auto;
+	margin: 1em auto 2em auto;
 	background-color: var(--dark-gray);
 	padding: 1.2em 4em;
 	border: none;
-	width: 60%;
+	width: 370px;
 	box-shadow: 0.8px 2px 3px black;
-	/* cursor: pointer; */
+	cursor: pointer;
 
 	&:hover {
 		box-shadow: 0.4px 1.2px 2px black;
@@ -576,16 +574,22 @@ main {
 	flex-wrap: wrap;
     justify-content: center;
   }
+
+  #receipt-items .cart-item .cart-left h4 {
+	margin: 0;
+	font-size: 1em;
+	text-transform: uppercase;
+}
 }
 
 @media (min-width: 600px) {
   .menu-and-cart {
 	  width: 60%;
   }
-  /* #receipt-body {
-	width: 100%;
-	max-width: 60%;
-  } */
+  #receipt-body {
+	/* width: 100%; */
+	width: 400px;
+  }
   #cart-page {
 	width: 50%;
 	margin: auto;

@@ -59,16 +59,6 @@ export async function showReceipt(orderId) {
 	<span class="amount">${receipt.orderValue} SEK</span>
 	</div>`
 
-	// 	receiptTotalEl.innerHTML = `
-
-//   <div class="cart-left">
-//     <h4>TOTALT</h4>
-//   </div>
-//   <span class="menu-dots"></span>
-//   <div class="cart-right">
-//     <span class="price">${receipt.orderValue} SEK</span>
-//   </div>
-// `
 
 
 	orderStatusPage.classList.add('hidden')
