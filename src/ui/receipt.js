@@ -42,7 +42,7 @@ export async function showReceipt(orderId) {
 			<span class="menu-dots"></span>
 
             <div class="cart-right">
-                <span class="price">${item.price * item.quantity} SEK</span>
+                <span class="price">${item.price} SEK</span>
             </div>
         `
 

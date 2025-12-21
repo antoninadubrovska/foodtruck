@@ -9,12 +9,6 @@ const cartPage = document.getElementById("cart-page")
 const receiptSection = document.getElementById("receipt-page")
 const orderStatusPage = document.getElementById("order-status-page")
 
-// export function showMenuPage() {
-//     menuContainer.classList.remove("hidden")
-//     cartPage.classList.add("hidden")
-//     receiptSection.classList.add("hidden")
-// }
-
 //menu always wins when called - authoritative
 function showMenuPage() {
 	menuContainer.classList.remove("hidden")
@@ -100,6 +94,25 @@ function renderGroupSection(title, items) {
 			addToCart(item)
 			updateCartCounter()
 		})
+
+		// --- Keyboard ACTIVE styling (Enter / Space)
+		btn.addEventListener("keydown", (e) => {
+			if (e.key === "Enter" || e.key === " ") {
+				btn.classList.add("keyboard-active")
+			}
+		})
+
+		btn.addEventListener("keyup", (e) => {
+			if (e.key === "Enter" || e.key === " ") {
+				e.stopPropagation()
+				setTimeout(() => {
+					btn.classList.remove("keyboard-active")
+				}, 120)
+			}
+		})
+
+
+
         buttonsWrap.appendChild(btn)
     })
     card.appendChild(buttonsWrap)
@@ -109,7 +122,10 @@ function renderGroupSection(title, items) {
 
 function createMenuItem(item) {
     const el = document.createElement("div")
-    el.classList.add("menu-item", `item-${item.type}`)
+	el.classList.add("menu-item", `item-${item.type}`)
+
+	// div is focusable with keyboard
+    el.setAttribute("tabindex", "0")
 
     const header = document.createElement("div")
     header.classList.add("menu-header")
@@ -131,17 +147,35 @@ function createMenuItem(item) {
     const desc = document.createElement("p")
     desc.classList.add("menu-item-description")
     desc.textContent = item.description
-    el.appendChild(desc)
+	el.appendChild(desc)
 
-	el.addEventListener("click", () => {
-		addToCart(item)
-		updateCartCounter()
+	// --- Mouse click
+    el.addEventListener("click", () => {
+        addToCart(item)
+        updateCartCounter()
+        if (!cartPage.classList.contains("hidden")) renderCart()
+    })
+	// --- Keyboard
+	el.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+			// e.preventDefault()
 
-		// If cart page is visible, update immediately
-		if (!cartPage.classList.contains("hidden")) {
+			// simulate active state
+			el.classList.add("keyboard-active")
+
+            setTimeout(() => el.classList.remove("keyboard-active"), 120)
+
+
+			addToCart(item)
+			updateCartCounter()
+
+			// If cart page is visible, update immediately
+			if (!cartPage.classList.contains("hidden"))
 			renderCart()
 		}
 	})
+
+
 
     return el
 }

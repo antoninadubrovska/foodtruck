@@ -18,8 +18,14 @@ currentOrderId = orderId
   //reuse receipt data
 const receipt = await getReceipt(orderId)
 
-	etaEl.textContent = 'ETA ' + minutes + ' MIN'
+	// etaEl.textContent = 'ETA ' + minutes + ' MIN'
 	// Renders order number and estimated time
+
+	// Show ETA or "ready" message if 0 minutes
+    etaEl.textContent = minutes <= 0
+        ? "BESTÄLLNINGEN ÄR KLAR"
+        : "ETA " + minutes + " MIN"
+
 	orderIdEl.textContent = '#' + receipt.id
 
 //   hideAllPages()
