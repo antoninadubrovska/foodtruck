@@ -1,50 +1,81 @@
-// Alla funktioner som gör fetch
+
 
 const baseUrl = 'https://fdnzawlcf6.execute-api.eu-north-1.amazonaws.com/'
-// const baseUrl = 'https://corsproxy.io/?url=https://fdnzawlcf6.execute-api.eu-north-1.amazonaws.com/'
-
-
-
-// To use the API you must first fetch your own API key.POST to / keys.Save the key in a variable in your code once retrieved.
 
 const apiKey = 'yum-JAaNDtW2DyvIHS96'
 
-// menu
-
-// curl -X 'GET' \
-//   'https://fdnzawlcf6.execute-api.eu-north-1.amazonaws.com/menu' \
-//   -H 'accept: application/json' \
-//   -H 'x-zocom: yum-JAaNDtW2DyvIHS96'
-
-
-
-// "items": [
-//     {
-//       "id": 1,
-//       "type": "wonton",
-//       "name": "Karlstad",
-//       "description": "En god friterad wonton med smaker från de värmländska skogarna.",
-//       "ingredients": [
-//         "kantarell",
-//         "scharlottenlök",
-//         "morot",
-//         "bladpersilja"
-//       ],
-//       "price": 9
-//     },
-
-async function getMenu() {
-
-
-		const response = await fetch(baseUrl + 'menu', {
-			method: 'GET',
+export async function getMenu() {
+	try {
+		const res = await fetch(baseUrl + 'menu', {
 			headers: {
 				'accept': 'application/json',
 				'x-zocom': apiKey
 			}
 		})
-	const data = await response.json()
-	console.log(data)
+		return await res.json()
+	} catch (error) {
+		console.error("Error fetching menu:", error)
+	}
+}
+
+
+export async function createTenant(name) {
+	const res = await fetch(baseUrl + 'tenants', {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+			'x-zocom': apiKey
+		},
+		body: JSON.stringify({ name })
+	})
+
+	if (!res.ok) {
+		const errorText = await res.text()
+		throw new Error(`Tenant creation failed: ${res.status} ${errorText}`)
 	}
 
-export { getMenu}
+	return await res.json()
+}
+
+
+export async function createOrder(tenantId, orderBody) {
+	try {
+		const res = await fetch(`${baseUrl}${tenantId}/orders`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				'x-zocom': apiKey
+			},
+			body: JSON.stringify(orderBody)
+		})
+
+		// if (!res.ok) line turns fetch into a reliable API client.
+		if (!res.ok) {
+			throw new Error(`Order failed: ${res.status}`)
+		}
+
+		return await res.json()
+	} catch (error) {
+		console.error("Error creating order:", error)
+	}
+}
+
+// By unwrapping data.receipt removed the extra layer that was causing receipt.items to be undefined.
+
+export async function getReceipt(orderId) {
+	try {
+		const res = await fetch(`${baseUrl}receipts/${orderId}`, {
+			headers: {
+				'accept': 'application/json',
+				'x-zocom': apiKey
+			}
+		})
+
+		//return await res.json()
+		const data = await res.json()
+		return data.receipt   // unwrap
+
+	} catch (error) {
+		console.error("Error fetching receipt:", error)
+	}
+}

@@ -1,17 +1,76 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sv">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Foodtruck</title>
-	<link rel="stylesheet" href="./style/styles.css">
-	<link rel="stylesheet" href="./style/base.css">
+	<link rel="stylesheet" href="./style/base.css" />
+	<link rel="stylesheet" href="./style/styles.css" />
+	<link rel="stylesheet" href="./style/load.css">
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+	<link rel="icon" type="image/svg+xml" href="./assets/logo.svg">
+
 	<script type="module" src="./src/main.js"></script>
 </head>
 <body>
+	<main>
 
-	<div>
-		<div class="menu-container"></div>
-	</div>
+		<div id="loading-overlay">
+			<div class="logo-wrapper">
+				<img src="./assets/logo.svg" alt="Food Truck Logo" class="spinning-logo">
+			</div>
+			<!-- <p>Getting your delicious menu ready…</p> -->
+		</div>
+
+		<section class="menu-container">
+			<div class="menu-and-cart">
+				<div class="cart-icon">
+					<img src="./assets/cart.svg" alt="cart" />
+					<span class="cart-count">0</span>
+				</div>
+				<h2 class="menu-header">MENY</h2>
+				<div class="menu-items-container"></div>
+			</div>
+		</section>
+
+		<section id="cart-page" class="hidden">
+			<img src="./assets/cart.svg" alt="GO BACK" />
+			<div id="cart-items"></div>
+			<p><span id="cart-total"></span></p>
+			<button id="checkout-btn" class="checkout-btn">
+				TAKE MY MONEY
+			</button>
+		</section>
+
+		<section id="order-status-page" class="hidden">
+			<img src="./assets/boxtop.svg" alt="boxtop" />
+
+			<h3>DINA WONTONS TILLAGAS</h3>
+
+			<p id="status-eta"></p>
+			<p id="status-order-id">#</p>
+			<div class = "status-order-button-wrapper">
+				<button id="see-receipt-btn">SE KVITTO</button>
+				<button id="new-order-btn-status">GÖR EN NY BESTÄLLNING</button>
+			</div>
+		</section>
+
+		<section id="receipt-page" class="hidden">
+			<div class="receipt-body">
+				<img src="./assets/logo.svg" alt="YYGS" />
+				<h3>Kvitto</h3>
+
+				<div id="receipt-order-id">#</div>
+				<div id="receipt-items"></div>
+
+				<div id="receipt-total" class="cart-total"></div>
+			</div>
+
+			<button id="new-order-btn">GÖR EN NY BESTÄLLNING</button>
+		</section>
+	</main>
 </body>
 </html>
