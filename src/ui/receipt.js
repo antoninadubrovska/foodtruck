@@ -16,25 +16,24 @@ const orderStatusPage = document.getElementById("order-status-page")
 export async function showReceipt(orderId) {
 
 	// fetches final receipt
-    const receipt = await getReceipt(orderId)
+	const receipt = await getReceipt(orderId)
 
-    if (!receipt || !receipt.items) {
-        console.error("Invalid receipt response:", receipt)
+	if (!receipt || !receipt.items) {
+		console.error("Invalid receipt response:", receipt)
 		return
 
-    }
+	}
 
 	// render
-    receiptItems.innerHTML = ""
-    receiptOrderId.textContent = `#` + receipt.id
-    // receiptTimestamp.textContent =` ETA: ` +
-    //     new Date(receipt.timestamp).toLocaleTimeString("sv-SE")
+	receiptItems.innerHTML = ""
+	receiptOrderId.textContent = `#` + receipt.id
 
-    receipt.items.forEach(item => {
-        const row = document.createElement("div")
-        row.classList.add("cart-item")
 
-        row.innerHTML = `
+	receipt.items.forEach(item => {
+		const row = document.createElement("div")
+		row.classList.add("cart-item")
+
+		row.innerHTML = `
             <div class="cart-left">
                 <h4>${item.name}</h4>
                 <span class="qty">${item.quantity} stycken</span>
@@ -46,8 +45,8 @@ export async function showReceipt(orderId) {
             </div>
         `
 
-        receiptItems.appendChild(row)
-    })
+		receiptItems.appendChild(row)
+	})
 
 	// backend-calculated total, structured markup instead of textContent:
 	// receiptTotalEl.textContent = `TOTALT ${receipt.orderValue} SEK`
@@ -63,11 +62,11 @@ export async function showReceipt(orderId) {
 
 
 	orderStatusPage.classList.add('hidden')
-    receiptPage.classList.remove("hidden")
+	receiptPage.classList.remove("hidden")
 }
 
 // Full loop complete
 newOrderBtn.addEventListener("click", () => {
-    receiptPage.classList.add("hidden")
-    showMenuPage()
+	receiptPage.classList.add("hidden")
+	showMenuPage()
 })

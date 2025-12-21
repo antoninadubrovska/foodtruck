@@ -8,8 +8,11 @@ import { setupCart } from './ui/cart.js'
 // SPA
 async function initApp() {
 	await initTenant()
-    await setupMenu()
-    setupCart()
+	await setupMenu()
+	setupCart()
+
+	const overlay = document.getElementById('loading-overlay');
+    if (overlay) overlay.style.display = 'none';
 }
 
 initApp()

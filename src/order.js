@@ -4,26 +4,26 @@ import { createOrder } from "./api.js"
 import { getCartItems } from "./store.js"
 
 async function submitOrder() {
-    const tenantId = getTenantId()
-    const cartItems = getCartItems()
+	const tenantId = getTenantId()
+	const cartItems = getCartItems()
 
-    const ids = cartItems.flatMap(item =>
-        Array(item.quantity).fill(item.id)
-    )
+	const ids = cartItems.flatMap(item =>
+		Array(item.quantity).fill(item.id)
+	)
 
-    const orderBody = { items: ids }
+	const orderBody = { items: ids }
 
-    const response = await createOrder(tenantId, orderBody)
+	const response = await createOrder(tenantId, orderBody)
 
-    if (!response || !response.order?.id) {
-        return null
-    }
+	if (!response || !response.order?.id) {
+		return null
+	}
 
-    return {
-        orderId: response.order.id,
-        etaTime: response.order.eta,
-        curTime: response.order.timestamp
-    }
+	return {
+		orderId: response.order.id,
+		etaTime: response.order.eta,
+		curTime: response.order.timestamp
+	}
 }
 
 

@@ -13,33 +13,29 @@ let currentOrderId = null
 
 
 export async function showOrderStatus(orderId, minutes) {
-currentOrderId = orderId
+	currentOrderId = orderId
 
-  //reuse receipt data
-const receipt = await getReceipt(orderId)
-
-	// etaEl.textContent = 'ETA ' + minutes + ' MIN'
-	// Renders order number and estimated time
+	//reuse receipt data
+	const receipt = await getReceipt(orderId)
 
 	// Show ETA or "ready" message if 0 minutes
-    etaEl.textContent = minutes <= 0
-        ? "BESTÄLLNINGEN ÄR KLAR"
-        : "ETA " + minutes + " MIN"
+	etaEl.textContent = minutes <= 0
+	? "BESTÄLLNINGEN ÄR KLAR"
+	: "ETA " + minutes + " MIN"
 
 	orderIdEl.textContent = '#' + receipt.id
 
-//   hideAllPages()
-page.classList.remove("hidden")
+	page.classList.remove("hidden")
 }
 
 
 seeReceiptBtn.addEventListener("click", () => {
-page.classList.add("hidden")
-showReceipt(currentOrderId)
+	page.classList.add("hidden")
+	showReceipt(currentOrderId)
 })
 
 newOrderBtn.addEventListener("click", () => {
-page.classList.add("hidden")
-showMenuPage()
+	page.classList.add("hidden")
+	showMenuPage()
 })
 

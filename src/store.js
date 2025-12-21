@@ -4,33 +4,33 @@
 let cart = []
 
 export function addToCart(item) {
-    const existing = cart.find(i => i.id === item.id)
-    if (existing) {
-        existing.quantity++
-    } else {
-        cart.push({ ...item, quantity: 1 })
-    }
+	const existing = cart.find(i => i.id === item.id)
+	if (existing) {
+		existing.quantity++
+	} else {
+		cart.push({ ...item, quantity: 1 })
+	}
 }
 /** store */
 export function removeFromCart(itemId) {
-    cart = cart.filter(i => i.id !== itemId)
+	cart = cart.filter(i => i.id !== itemId)
 }
 
 export function updateQuantity(itemId, qty) {
-    const item = cart.find(i => i.id === itemId)
-    if (item) item.quantity = qty
+	const item = cart.find(i => i.id === itemId)
+	if (item) item.quantity = qty
 }
 
 export function getCartItems() {
-    return cart
+	return cart
 }
 
 export function getCartCount() {
-    return cart.reduce((sum, item) => sum + item.quantity, 0)
+	return cart.reduce((sum, item) => sum + item.quantity, 0)
 }
 
 export function clearCart() {
-    cart = []
+	cart = []
 }
 
 

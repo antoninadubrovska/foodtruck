@@ -1,52 +1,28 @@
 
-<!-- 1 getting a tenant, (--ssl-no-revoke) in certain case: -->
+# Yum Yum Gim Me Sum – Foodtruck Webbapp
 
-<!--
-$ curl (--ssl-no-revoke) -X POST "https://fdnzawlcf6.execute-api.eu-north-1.amazonaws.com/tenants"   -H "Content-Type: application/json"   -H "x-zocom: yum-JAaNDtW2DyvIHS96"   -d "{\"name\": \"uniqueName\"}" -->
+Detta projekt är en webbapplikation för den Karlstad-baserade foodtrucken **"Yum Yum Gim Me Sum"** som säljer wontons, dipsås och drycker. Appen är en **Single Page Application (SPA)** och är byggd med JavaScript.
 
-<!-- $ curl --ssl-no-revoke -X POST "https://fdnzawlcf6.execute-api.eu-north-1.amazonaws.com/tenants"   -H "Content-Type: application/json"   -H "x-zocom: yum-JAaNDtW2DyvIHS96"   -d "{\"name\": \"Yaliuka\"}" -->
+## Funktioner
 
-<!-- {"id":"ii25","name":"Yaliuka"} -->
-<!-- {"id":"mq65","name":"Vitaly"} -->
+- Visa menyn med alla produkter hämtade från API:et.
+- Lägg till produkter i varukorgen och ändra antal.
+- Skicka beställning till API:et och få tillbaka ett order-ID.
+- Visa kvitto för en lagd beställning.
+- Navigera fram och tillbaka mellan meny och varukorg.
 
+## Tekniker
 
+- JavaScript (ES6+), HTML, CSS
+- Fetch API för att kommunicera med backend-API
+- Responsiv design, mobile-first
+- Hantering av state med egna funktioner för varukorg och beställningar
 
+## API-användning
 
-<!--  menu
- curl -X 'GET' \
-   'https://fdnzawlcf6.execute-api.eu-north-1.amazonaws.com/menu' \
-   -H 'accept: application/json' \
-   -H 'x-zocom: yum-JAaNDtW2DyvIHS96'
+Appen kommunicerar med API:et på följande sätt:
 
- "items": [
-     {
-       "id": 1,
-       "type": "wonton",
-       "name": "Karlstad",
-       "description": "En god friterad wonton med smaker från de värmländska skogarna.",
-       "ingredients": [
-         "kantarell",
-        "scharlottenlök",
-         "morot",
-         "bladpersilja"
-       ],
-       "price": 9
-     }, -->
-	 
-
-<!-- Order:
-
-$ curl --ssl-no-revoke -X POST "https://fdnzawlcf6.execute-api.eu-north-1.amazonaws.com/mq65/orders"   -H "Content-Type: application/json"   -H "x-zocom: yum-JAaNDtW2DyvIHS96"   -d '{
-
-  "items": [
-    17
-  ]
-}
-     ' -->
-
-
-
-
-<!-- Tenant:
-
-name = 'Vitaly', tenantID = 'mq65' -->
+- **Hämta meny:** `getMenu()`
+- **Skapa tenant:** `createTenant(name)`
+- **Skapa order:** `createOrder(tenantId, orderBody)`
+- **Hämta kvitto:** `getReceipt(orderId)`

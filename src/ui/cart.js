@@ -1,12 +1,8 @@
 
 import { getCartItems, getCartCount, clearCart, updateQuantity, removeFromCart } from "../store.js"
 import { submitOrder } from "../order.js"
-// For console testing, temporarily expose submitOrder globally
-// window.submitOrder = submitOrder
 import { showOrderStatus } from "./success.js"
 import { showMenuPage } from "./menu.js"
-
-//import { showReceipt } from "./receipt.js"
 
 
 
@@ -24,8 +20,8 @@ export function renderCart() {
 
 
 	if (!items.length) {
-		cartContainer.innerHTML = "<p>Din varukorg är tom. <br>Klicka på kundvagnsikonen för att gå tillbaka till menyn.</p>"
-		// cartTotalEl.innerHTML = "0 SEK"
+		cartContainer.innerHTML =`
+		<p class="cart-empty-msg"> Din varukorg är tom. <br>Klicka på kundvagnsikonen för att gå tillbaka till menyn.</p>`
 		cartTotalEl.innerHTML = ""; // Clear previous total
 		checkoutBtn.disabled = true // Disable checkout button
 		return
@@ -97,12 +93,7 @@ export function renderCart() {
 		<span class="amount">${total} SEK</span>
 	</div>
 	`
-
-
-
 }
-
-
 
 export function updateCartCounter() {
 	const badge = document.querySelector(".cart-count")
@@ -128,10 +119,6 @@ export function setupCart() {
 			const minutes = Math.floor(diffMs / 60000)
 
 			console.log('DIFF: ', minutes)
-
-			//		const orderId = await submitOrder()
-			//		console.log('Order Id: ', orderId)
-
 
 			if (!orderId) {
 				console.error("Order failed or no orderId returned")

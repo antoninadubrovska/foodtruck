@@ -18,7 +18,7 @@ Font: Frutiger Next Bold */
 
 body {
 	font-size: 14px;
-  }
+}
 
 :root {
 	--green: #489078;
@@ -31,7 +31,7 @@ body {
 	--almost-white: #AAAAAA;
 	--button-gray: #F1F0EC3D;
 	--light-text: #F4F3F1F0;
-    --border-radius-buttons: 6px;
+	--border-radius-buttons: 6px;
 	--text-shadow-main: 0.5px 0.3px 2px rgb(30, 29, 29);
 	--light-gray-mlus-minus-buttons:rgba(53, 49, 49, 0.24);
 	--box-shadow-main: 0.8px 0.6px 5px rgb(30, 29, 29);
