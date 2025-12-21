@@ -56,6 +56,7 @@ export async function showReceipt(orderId) {
 	`<div class="receipt-total-inner">
 	<span class="label"> TOTALT</span>
 	<span class="placeholder"></span>
+	<span class='moms-info'>inkl. 20% moms </span>
 	<span class="amount">${receipt.orderValue} SEK</span>
 	</div>`
 

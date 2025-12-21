@@ -50,13 +50,6 @@ function showCartPage() {
 
 cartIcon.addEventListener("click", showCartPage)
 
-// // back button in cart
-// const backBtn = document.createElement("button")
-// backBtn.classList.add('checkout-or-goback-group')
-// backBtn.textContent = "Tillbaka till menyn"
-// backBtn.addEventListener("click", showMenuPage)
-// cartPage.appendChild(backBtn)
-
 function renderWontonSection(items) {
     const section = document.createElement('section')
     section.classList.add('menu-section')
@@ -92,7 +85,7 @@ function renderGroupSection(title, items) {
 
     items.forEach(item => {
         const btn = document.createElement('button')
-		btn.textContent = item.name
+		btn.textContent = item.name.toLowerCase()
 
 		const card = createMenuItem(item)
 
@@ -132,19 +125,6 @@ function createMenuItem(item) {
     desc.classList.add("menu-item-description")
     desc.textContent = item.description
     el.appendChild(desc)
-
-    // // Click to toggle button, no cart modification here
-    // el.addEventListener("click", () => {
-	// 	el.classList.toggle("active")
-
-	// 	const btn = el.querySelector(".add-btn")
-
-    //     if (el.classList.contains("active")) {
-    //         if (!btn) showAddButton(el, item)
-    //     } else {
-    //         if (btn) btn.remove() // remove only when toggling off
-    //     }
-	// })
 
 	el.addEventListener("click", () => {
 		addToCart(item)
