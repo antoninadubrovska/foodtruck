@@ -2,6 +2,7 @@ import { getReceipt } from "../api.js"
 import { showMenuPage } from "./menu.js"
 import { showReceipt } from "./receipt.js"
 
+
 const page = document.getElementById("order-status-page")
 const orderIdEl = document.getElementById("status-order-id")
 const etaEl = document.getElementById("status-eta")
