@@ -24,12 +24,15 @@ export function renderCart() {
 
 
 	if (!items.length) {
-		cartContainer.innerHTML = "<p>Din varukorg är tom</p>"
-		cartTotalEl.innerHTML = "0 SEK"
+		cartContainer.innerHTML = "<p>Din varukorg är tom. <br>Klicka på kundvagnsikonen för att gå tillbaka till menyn.</p>"
+		// cartTotalEl.innerHTML = "0 SEK"
+		cartTotalEl.innerHTML = ""; // Clear previous total
+		checkoutBtn.disabled = true // Disable checkout button
 		return
 	}
 
 	let total = 0
+	checkoutBtn.disabled = false // Enable checkout button
 
 	items.forEach(item => {
 		const row = document.createElement("div")
@@ -57,12 +60,6 @@ export function renderCart() {
 		const cartRight = row.querySelector(".cart-right")
 		row.insertBefore(dots, cartRight)
 
-		// PLUS BUTTON
-		row.querySelector(".plus").addEventListener("click", () => {
-			updateQuantity(item.id, item.quantity + 1)
-			renderCart()
-			updateCartCounter()
-		})
 
 		// MINUS BUTTON
 		row.querySelector(".minus").addEventListener("click", () => {
@@ -74,6 +71,16 @@ export function renderCart() {
 			renderCart()
 			updateCartCounter()
 		})
+
+
+		// PLUS BUTTON
+		row.querySelector(".plus").addEventListener("click", () => {
+			updateQuantity(item.id, item.quantity + 1)
+			renderCart()
+			updateCartCounter()
+		})
+
+
 
 		cartContainer.appendChild(row)
 		total += item.price * item.quantity

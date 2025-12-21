@@ -84,8 +84,15 @@ function renderGroupSection(title, items) {
 	buttonsWrap.classList.add('group-buttons-wrap')
 
     items.forEach(item => {
-        const btn = document.createElement('button')
-		btn.textContent = item.name.toLowerCase()
+		const btn = document.createElement('button')
+
+
+		if (title === 'Dipsås') {
+			btn.textContent = item.name.toLowerCase()
+		} else {
+			btn.textContent = item.name
+		}
+
 
 		const card = createMenuItem(item)
 
