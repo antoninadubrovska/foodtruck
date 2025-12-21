@@ -3,6 +3,8 @@ import { createTenant } from "./api.js"
 const TENANT_KEY = "tenantId"
 
 export async function initTenant(name = "Yaliuka") {
+	localStorage.setItem(TENANT_KEY, 'YOUR_EXISTING_TENANT_ID');
+
 	let tenantId = localStorage.getItem(TENANT_KEY)
 
 	if (!tenantId) {
